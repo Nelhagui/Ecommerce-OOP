@@ -34,10 +34,7 @@
     <section id="banner">
       <div class="container">
         <div class="row">
-         <!--Aquí forzo a que siempre se vea en 12 columnas 
-         aunque sea cualquier dispositivo como lo que realice
-         en el formulario que les envie-->
-          <div class="col-xs-12">
+          <div class="col-12">
             <div class="intro-text text-center">
               <h2>Bienvenidos</h2>
               <h1>E-Commerce - Fullstack</h1>
