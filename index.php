@@ -1,3 +1,6 @@
+<?php 
+// Validaciones aca
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,23 +23,22 @@
     		<a class="nav-link active" href="#">Active</a>
   		</li>
   		<li class="nav-item">
-    		<a class="nav-link" href="formulario.php" target="_blank">Formulario</a>
-  		</li>
-  		<li class="nav-item">
     		<a class="nav-link" href="#">Link</a>
   		</li>
   		<li class="nav-item">
    			<a class="nav-link disabled" href="#">Disabled</a>
   		</li>
+      <li class="nav-item">
+        <a class="nav-link" href="registro.php" target="_blank">Registrarme</a>
+      </li>
 	</ul>
 </div>
-<!-- banner -->
+<!-- Banner -->
     <section id="banner">
       <div class="container">
         <div class="row">
           <div class="col-12">
             <div class="intro-text text-center">
-              <h2>Bienvenidos</h2>
               <h1>E-Commerce - Fullstack</h1>
               <a href="#services" class="btn btn-lg">COMPRAR</a>
             </div>

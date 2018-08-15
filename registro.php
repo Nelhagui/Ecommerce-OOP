@@ -15,7 +15,7 @@
 
   <div class="row">
     <div class="col-12 col-md-12 col-lg-12">
-      <h1>Formulario E-COMMERCE</h1>
+      <h1>Registro E-COMMERCE</h1>
     </div>
   </div>
   <form>
@@ -32,19 +32,19 @@
 
     <div class="form-group">
       <label for="inputDNI">DNI</label>
-      <input type="text" class="form-control" id="inputDNI" placeholder="DNI">
+      <input type="number" class="form-control" id="inputDNI" placeholder="DNI">
     </div>
 
     <div class="form-group">
       <label for="inputEdad">Edad</label>
-      <input type="text" class="form-control" id="inputEdad" placeholder="Edad">
+      <input type="number" class="form-control" id="inputEdad" placeholder="Edad">
     </div>
 
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="inputCheck">
       <label class="form-check-label" for="inputCheck">Acepta los terminos y condiciones</label>
     </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">REGISTRARME</button>
   </form>
 </div>
   
