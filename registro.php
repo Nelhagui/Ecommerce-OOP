@@ -44,7 +44,16 @@
       <input type="checkbox" class="form-check-input" id="inputCheck">
       <label class="form-check-label" for="inputCheck">Acepta los terminos y condiciones</label>
     </div>
-      <button type="submit" class="btn btn-primary">REGISTRARME</button>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">REGISTRARME</button>
+        </div>
+      
+       </div>
+       
+        
+      </div>
+      
   </form>
 </div>
   
