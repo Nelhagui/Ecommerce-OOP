@@ -1,0 +1,158 @@
+/* MODIFICACIONES BOTONES EN SESION */
+
+    .form-signin {
+        width: 100%;
+        max-width: 300px;
+        margin: auto;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .form-signin .btn {
+        max-width: 300px;
+        width: 100%;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        background-color: #277aaf;
+        margin-bottom: 45px;
+    }
+    .btn-primary:hover {
+        color: rgb(255, 255, 255);
+        background-color: #5895bb;
+        border-color: #b4b4b4;
+    }
+/* FIN BOTONES SESION */
+
+
+body {
+    background-color: rgb(247, 247, 247);
+    height: 100%;
+}
+
+
+/* MENU---- */
+    .nav {
+        margin-left: 22px;
+        width: 67%;
+    }
+
+    .nav a {
+        padding: 30px 15px 30px 15px;
+        color: rgb(92, 92, 92)
+    }
+
+    .icono-carrito {
+        position: absolute;
+        right: 65px;
+    }
+
+    .menu {
+        position: relative;
+        display: flex;
+        background-color: white;
+        padding-left: 65px;
+        align-items: center;
+    }
+    
+/* FIN MENU--- */
+
+/* BANNER-- */
+    .banner-home {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .banner-home img {
+        width: 100%;
+        height: 100%;
+    }
+/* FIN BANNER--- */
+
+
+/* SECCION PRODUCTOS--- */
+    .seccion-main {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .seccion-productos {
+        display: flex;
+        width: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .producto img {
+        margin: 10px;
+        border-radius: 7px;
+        border: 1px solid rgb(189, 189, 189);
+    }
+
+    .seccion-main h3 {
+        margin: 20px;
+        color: gray;
+    }
+/* --FIN SECCIÓN PRODUCTOS-- */
+
+/* SECCION PREGUNTAS FRECUENTES--- */
+
+    .container {
+        border-radius: 0px;
+        border: solid 1px rgba(214, 210, 210, 0);
+    }
+
+/* FIN PREGUNTAS FRECUENTES */
+
+
+/* REGISTRO--- */
+
+.container-fluid {
+    text-align: center;
+    max-width: 600px;
+    margin-top: 40px;
+}
+
+/* FIN REGISTRO */
+
+/* MEDIAQUERIES */
+
+@media (max-width: 627px) {
+    
+    .banner-home {
+        display: none;
+    }
+
+    .nav {
+        display: block;
+        width: 100%;
+        margin-left: 0%;
+        background-color: #f7f7f7%, 50%);
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .menu {
+        padding-left: 0px;
+        text-align: center;
+        background-color: #ffffff00;
+    }
+
+    .icono-carrito {
+        display: none;
+    }
+
+    .nav-item {
+        border: 1px solid #efeeee;
+        margin: 5px 0  5px 0;
+        background-color: white;
+    }
+
+    .nav a {
+        padding: 18px 15px 18px 15px;
+    
+
+}
