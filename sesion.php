@@ -21,10 +21,10 @@
                 <a class="nav-link active" href="sesion.php">Iniciar Sesión</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link disabled" href="faq.php">Faq</a>
+                <a class="nav-link disabled" href="preguntasfrecuentes.php">Faq</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="registro.php" target="_blank">Registrarme</a>
+                <a class="nav-link" href="registro.php">Registrarme</a>
                 </li>
             </ul>
             <div class="icono-carrito">
