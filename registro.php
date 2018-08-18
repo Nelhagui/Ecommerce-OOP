@@ -41,28 +41,24 @@
 
   <div class="row">
     <div class="col-12 col-md-12 col-lg-12">
-      <h1>Registro E-COMMERCE</h1>
+      <h2>Ingrese sus datos para registrarse</h2>
     </div>
   </div>
   <form>
     <div class="form-group">
-      <label for="inputEmail1">Email</label>
       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email">
       <small id="emailHelp" class="form-text text-muted">No vamos a compartir su email con nadie.</small>
     </div>
 
     <div class="form-group">
-      <label for="inputPassword1">Password</label>
       <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
     </div>
 
     <div class="form-group">
-      <label for="inputDNI">DNI</label>
       <input type="number" class="form-control" id="inputDNI" placeholder="DNI">
     </div>
 
     <div class="form-group">
-      <label for="inputEdad">Edad</label>
       <input type="number" class="form-control" id="inputEdad" placeholder="Edad">
     </div>
 
