@@ -30,7 +30,7 @@
             </li>
         </ul>
         <div class="icono-carrito">
-            <img src="images/carrito-icono.png" alt="Mis Compras">
+            <a href="#"><img src="images/carrito-icono.png" alt="Mis Compras"></a> 
         </div>
     </div>
         <!-- FIN NAV -->
