@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <?php include_once('head.php'); ?>
+    <title>Iniciar Sesión</title>
+</head>
 
 <body>
     <?php include_once('navbar.php'); ?>

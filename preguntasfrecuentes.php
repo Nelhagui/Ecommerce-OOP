@@ -2,6 +2,8 @@
 <html lang="en">
 
 <?php include_once('head.php'); ?>
+    <title>Preguntas Frecuentes</title>
+</head>
 
 <body>
 
