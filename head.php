@@ -7,5 +7,4 @@
     <link rel="stylesheet" href="css/master.css">
     <!-- <link rel="stylesheet" href="css/estilos.css"> -->
 	<title>E-commerce</title>
-
 </head>
