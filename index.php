@@ -5,16 +5,8 @@
 <html>
 <?php include_once('head.php'); ?>
 <body>
-
-<!-- NAV -->
-<?php include_once('navbar.php'); ?>
-<!-- FIN NAV -->
-
-<!-- BANNER -->
-  <div class="banner-home">
-    <img src="images/slider-home.png" alt="">
-  </div>
-<!-- FIN BANNER -->
+  <?php include_once('navbar.php'); ?>
+  <?php include_once('banner.php'); ?>
 
 <!-- PRODUCTOS bootstrap-->
 <section class="seccion-main">
