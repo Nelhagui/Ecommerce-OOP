@@ -1,39 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/stylepreguntas.css">
-    <link rel="stylesheet" href="css/master.css">
-    <title>Document</title>
+
+<?php include_once('head.php'); ?>
+    <title>Preguntas Frecuentes</title>
 </head>
+
 <body>
 
-    <!-- NAV -->
-    <div class="menu">
-        <img style="width:103px; height:66px;" src="images/logo.jpg" alt="" class="logo">
-        <ul class="nav">
-            <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link active" href="sesion.php">Iniciar Sesión</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link disabled" href="preguntasfrecuentes.php">Faq</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="registro.php">Registrarme</a>
-            </li>
-        </ul>
-        <div class="icono-carrito">
-            <a href="#"><img src="images/carrito-icono.png" alt="Mis Compras"></a> 
-        </div>
-    </div>
-        <!-- FIN NAV -->
+    <?php include_once('navbar.php'); ?>
+
 
     <div class="container hola">
         <div class="row titulo">
@@ -133,5 +108,8 @@
         </div>
         </div>
     </div>
+
+    <?php include_once('footer.php'); ?>
+
 </body>
 </html>
