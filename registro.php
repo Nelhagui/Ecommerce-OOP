@@ -3,7 +3,7 @@
 include_once('funciones.php');
   if($_POST) {
     // 1 - VALIDAR ERRORES para entrar a condicion de guardar users
-    $errores = 0;
+    $errores = 0;// Igualé a 0 para entrar en la condición abajo, después agregá tu función acá.
 
     // CREAR USUARIO 
     if ($errores == 0) { //(hay que agregar a la condicion count($errores)== 0 )
