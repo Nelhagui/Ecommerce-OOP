@@ -1,3 +1,17 @@
+<?php
+
+include_once('funciones.php');
+  if($_POST) {
+    // 1 - VALIDAR ERRORES para entrar a condicion de guardar users
+    $errores = 0;
+
+    // CREAR USUARIO 
+    if ($errores == 0) { //(hay que agregar a la condicion count($errores)== 0 )
+        $usuario =crearUsuario($_POST);
+        guardarUsuario($usuario);
+    }
+  }
+?>
 <!DOCTYPE html>
 <html>
 <?php include_once('head.php'); ?>
@@ -13,26 +27,26 @@
         <h2>Ingrese sus datos para registrarse</h2>
       </div>
     </div>
-    <form>
+    <form action="" method="post">
       <div class="form-group">
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email">
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email" name="email">
         <small id="emailHelp" class="form-text text-muted">No vamos a compartir su email con nadie.</small>
       </div>
 
       <div class="form-group">
-        <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+        <input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="password">
       </div>
 
       <div class="form-group">
-        <input type="number" class="form-control" id="inputDNI" placeholder="DNI">
+        <input type="number" class="form-control" id="inputDNI" placeholder="DNI" name="dni">
       </div>
 
       <div class="form-group">
-        <input type="number" class="form-control" id="inputEdad" placeholder="Edad">
+        <input type="number" class="form-control" id="inputEdad" placeholder="Edad" name="edad">
       </div>
 
       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="inputCheck">
+        <input type="checkbox" class="form-check-input" id="inputCheck" name="terminos">
         <label class="form-check-label" for="inputCheck">Acepta los terminos y condiciones</label>
       </div>
         <div class="row">
