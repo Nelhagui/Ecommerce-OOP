@@ -5,6 +5,7 @@
         max-width: 300px;
         margin: auto;
         margin-top: 40px;
+        margin-bottom: 60px;
         text-align: center;
     }
 
@@ -115,6 +116,40 @@ body {
 }
 
 /* FIN REGISTRO */
+
+/* FOOTER */
+.main-footer {
+    margin-top: 25px;
+}
+.main-footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 40px 0 40px 0;
+    background-color: #277aaf;
+    text-align: center;
+}
+
+.main-footer li {
+    display: inline;
+    border-right: 1px solid white;
+    
+}
+
+.main-footer li a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+
+.main-footer li:last-child {
+    border-right: none;
+}
+
+.main-footer li a:hover {
+    color: rgb(169, 189, 252);
+}
+
+
 
 /* MEDIAQUERIES */
 
