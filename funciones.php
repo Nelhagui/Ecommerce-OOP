@@ -1,5 +1,12 @@
 <?php
 
+    function old($user_input)// persistencia de datos
+    {
+        if (isset($_POST["$user_input"])) {
+            return $_POST["$user_input"];
+        }
+    }
+
 function crearUsuario($datos)
     {
         $usuario = [
