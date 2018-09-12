@@ -44,6 +44,13 @@ include_once('funciones.php');
       <div class="form-group">
         <input type="number" class="form-control" id="inputEdad" placeholder="Edad" name="edad">
       </div>
+      
+      <div class="input-group">
+        <label id="browsebutton" class="btn btn-default input-group-addon" for="my-file-selector" style="background-color:lightblue">
+          <input id="my-file-selector" type="file" style="display:none;">Browse...
+        </label>
+        <input name='foto' type="text" class="form-control" readonly="" placeholder="Insertar foto de perfil (opcional)" value=''>
+    </div>
 
       <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="inputCheck" name="terminos">
