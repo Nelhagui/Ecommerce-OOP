@@ -1,69 +1,105 @@
-<?php
 
-include_once('funciones.php');
-  if($_POST) {
-    // 1 - VALIDAR ERRORES para entrar a condicion de guardar users
-    $errores = 0;// Igualé a 0 para entrar en la condición abajo, después agregá tu función acá.
-
-    // CREAR USUARIO 
-    if ($errores == 0) { //(hay que agregar a la condicion count($errores)== 0 )
-        $usuario =crearUsuario($_POST);
-        guardarUsuario($usuario);
-    }
-  }
-?>
 <!DOCTYPE html>
 <html>
-<?php include_once('head.php'); ?>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="css/estilos.css"> -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/master.css">
   <title>Formulario</title>
 </head>
 <body>
-  <?php include_once('navbar.php'); ?>
 
-  <div class="container-fluid">
+<?php
+include 'funcionesdos.php';
 
-    <div class="row">
-      <div class="col-12 col-md-12 col-lg-12">
-        <h2>Ingrese sus datos para registrarse</h2>
+
+if ($_POST){
+  $errores = validate($_POST);
+
+  if(count($errores) == 0){
+    $usuario = createuser($_POST);
+    saveuser($usuario);
+    header('Location: sesion.php');
+  }
+}
+?>
+
+<?php include_once('navbar.php'); ?>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-12">
+      <h2>Ingrese sus datos para registrarse</h2>
+    </div>
+  </div>
+  <form method='post' action=''>
+    <div class="form-group">
+      <input type="text" class="form-control"  placeholder="Nombre y Apellido" name='nombre' value='<?=!isset($errores['nombre']) ? old('nombre') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['nombre'])): echo $errores['nombre']; endif; ?> </small>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Nombre de usuario" name='usuario' value='<?=!isset($errores['usuario']) ? old('usuario') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['usuario'])): echo $errores['usuario']; endif; ?> </small>
+    </div>
+
+	  <div class="form-group">
+    	<div class="controls">
+    		<select class='form-control' name="sexo" placeholder="Ingrese email">
+          <option value='masculino'> Masculino </option>
+          <option value='femenino'> Femenino </option>
+          <option value='otro'> Otro </option>
+        </select>
       </div>
     </div>
-    <form action="" method="post">
-      <div class="form-group">
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email" name="email">
-        <small id="emailHelp" class="form-text text-muted">No vamos a compartir su email con nadie.</small>
-      </div>
 
-      <div class="form-group">
-        <input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="password">
-      </div>
+    <div class="form-group">
+      <input type="email" class="form-control" aria-describedby="emailHelp" name='email' placeholder="Ingrese email" value='<?=!isset($errores['email']) ? old('email') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
+    </div>
 
-      <div class="form-group">
-        <input type="number" class="form-control" id="inputDNI" placeholder="DNI" name="dni">
-      </div>
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="Password" name='password' value=''>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['password'])): echo $errores['password']; endif; ?> </small>
+    </div>
 
-      <div class="form-group">
-        <input type="number" class="form-control" id="inputEdad" placeholder="Edad" name="edad">
+    <div class="input-group">
+      <!-- <label id="browsebutton" class="btn btn-default input-group-addon" for="my-file-selector" style="background-color:lightblue">
+        <input id="my-file-selector" type="file" name = "foto" style="display:none;">Browse...
+      </label> -->
+    <input type="file" name='foto'>
+        <?php if(isset($errores['foto'])) { ?>
+				<span><?php echo "<br>".$errores['foto'] ?></span>
+			<?php } ?>
+            
+      <br>
+      <br>
+      
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="inputCheck" name='confirm'>
+      <label class="form-check-label" for="inputCheck">Acepta los terminos y condiciones</label><br>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['confirm'])): echo $errores['confirm']; endif; ?> </small>
+    </div>
+
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">REGISTRARME</button>
+        </div>
+      
+       </div>
+       
+        
       </div>
       
-
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="inputCheck" name="terminos">
-        <label class="form-check-label" for="inputCheck">Acepta los terminos y condiciones</label>
-      </div>
-        <div class="row">
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">REGISTRARME</button>
-          </div>
-        
-        </div>
-        
-          
-        </div>
-        
-    </form>
-  </div>
-
-  <?php include_once('footer.php'); ?>
+  </form>
+</div>
+  
 
 </body>
 </html>
+

@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 
-<?php include_once('head.php'); ?>
+<?php 
+
+include_once('head.php');
+include_once('controllers/sessionController.php');
+
+if($_POST) {
+    //inicioSesion();
+    // $usuario = $usersDb->dbEmailSearch($_POST['email']);
+    // // if($usuario !== null) {
+    // //     if(password_verify($_POST['password'], $usuario['password']) == true) {
+    // //         $email = $_POST['email'];
+    // //         $auth->login($email);
+    // //         redirect('perfil.php');
+    // //     } 
+    // // }
+    capturaDatos($_POST);
+    if (isset($_POST['recordar'])){
+        recordarPassword($_POST);
+    }
+    header('Location: main-index.php');
+    
+}
+
+?>
     <title>Iniciar Sesión</title>
 </head>
 
