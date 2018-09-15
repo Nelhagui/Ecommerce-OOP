@@ -15,14 +15,18 @@
 <?php
 include 'funcionesdos.php';
 
-
 if ($_POST){
   $errores = validate($_POST);
 
   if(count($errores) == 0){
     $usuario = createuser($_POST);
-    saveuser($usuario);
-    header('Location: sesion.php');
+    $erroresFoto = saveAvatar ($usuario);
+    $errores = array_merge($errores, $erroresFoto);
+    if (count($errores == 0)) {
+        saveuser($usuario);
+        header('Location: sesion.php');
+        exit;
+    } 
   }
 }
 ?>
@@ -73,11 +77,8 @@ if ($_POST){
     <input type="file" name='foto'>
         <?php if(isset($errores['foto'])) { ?>
 				<span><?php echo "<br>".$errores['foto'] ?></span>
-			<?php } ?>
-            
+			<?php } ?>  
       <br>
-      <br>
-      
     </div>
 
     <div class="form-group form-check">

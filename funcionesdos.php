@@ -43,34 +43,12 @@ session_start();
             $errores['usuario'] = 'El nombre de usuario debe tener maximo 14 caracteres*';
         }
 
-        // Validacion imagen
-        if ($_FILES['foto']["error"] == UPLOAD_ERR_OK) {
-            $nombre = $_FILES['foto']["name"];
-            $archivo = $_FILES['foto']["tmp_name"];
-    
-            $ext = pathinfo($nombre, PATHINFO_EXTENSION);
-    
-            if ($ext != "png" && $ext != "jpg") {
-               // $errores['foto'] = "La foto debe tener los formatos JPG ó PNG";
-            }
-            else {
-                
-                $miArchivoDestino = dirname(__DIR__);
-                $miArchivoDestino = $miArchivoDestino . "/img/";
-                $miArchivoDestino = $miArchivoDestino . $_POST["nombre"] . "." . $ext;
-    
-                move_uploaded_file($archivo, $miArchivoDestino);
-            }
-        } else{
-            $errores['foto'] = "Disculpe debe seleccionar una imagen...";
-        }
-
         return $errores;
     }
 
     function createuser($datos){
         $usuario = [
-            "nombre" => $datos["nombre"],
+            'nombre' => $datos['nombre'],
             'usuario' => $datos['usuario'],
             'email' => $datos['email'],
             'sexo' => $datos['sexo'],
@@ -117,5 +95,39 @@ session_start();
         }
         return null;
     }
+
+    function persistenciaYCookiesEmail(){
+        if($_POST){
+            $usuario = buscameporemail($_POST['email']);
+            if($usuario !== null){
+                echo $_POST['email'];
+            }
+        }
+        if(!$_POST && isset($_COOKIE['email'])){
+            echo $_COOKIE['email'];
+        }
+    }
+
+    function persistenciaYCookiesPassword(){
+        if(!$_POST){
+            if(isset($_COOKIE["password"])){
+                echo $_COOKIE["password"];
+            }
+        }
+    }
+
+    function recordarusuario(){
+        if(isset($_POST['recordarme'])){
+            $usuario = $_POST['email'];
+            $password = $_POST['password'];
+            setcookie('email',$usuario,time() + 3600);
+            setcookie('password',$password,time() + 3600);
+        } else if(!isset($_POST['recordarme'])){
+            if(isset($_COOKIE['password']) && isset($_COOKIE['email'])){
+            setcookie('email','',time() - 3600);
+            setcookie('password','',time() - 3600);
+            }
+        }
+    }
+
 ?>
- 
