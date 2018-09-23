@@ -8,19 +8,19 @@ class Validator
 
         $nombre = trim($data['nombre']);
         if($nombre == "") {
-            $errors['nombre'] = "Debe ingresar un nombre";
+            $errors['nombre'] = "Debes ingresar un nombre";
         }
 
 
         $usuario = trim($data['usuario']);
         if($usuario == "") {
-            $errors['usuario'] = "Debe ingresar un usuario";
+            $errors['usuario'] = "Debes ingresar un usuario";
         }
 
         $email = trim($data['email']);
 
         if($email == "") {
-            $errors['email'] = "Debe ingresar un email";
+            $errors['email'] = "Debes ingresar un email";
         } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors['email'] = "Ingrese un email válido";
         }
@@ -28,14 +28,14 @@ class Validator
         $password = trim($data['password']);
         
         if($password == "") {
-            $errors['password'] = "Debe ingresar una contraseña";
+            $errors['password'] = "Debes ingresar una contraseña";
         } elseif($password < 4) {
             $errors['password'] = "La contraseña debe ser de al menos 4 caracteres";
         }
 
 
         if(!isset($data['confirm'])) {
-            $errors['confirm'] = "Tenes que aceptar terminos y condiciones";
+            $errors['confirm'] = "Debes aceptar terminos y condiciones";
         }
 
         return $errors;
