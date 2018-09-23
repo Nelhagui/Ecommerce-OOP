@@ -20,7 +20,7 @@ if ($_POST){
 
   if(count($errores) == 0){
     $usuario = createuser($_POST);
-    $erroresFoto = saveAvatar ($usuario);
+    // $erroresFoto = saveAvatar ($usuario); hay que crear esta función
     $errores = array_merge($errores, $erroresFoto);
     if (count($errores == 0)) {
         saveuser($usuario);
