@@ -1,35 +1,25 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="css/estilos.css"> -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/master.css">
-  <title>Formulario</title>
-</head>
-<body>
-
 <?php
-include 'funcionesdos.php';
+include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
+                      // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
+
+include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()                   
 
 if ($_POST){
-  $errores = validate($_POST);
-
-  if(count($errores) == 0){
-    $usuario = createuser($_POST);
-    // $erroresFoto = saveAvatar ($usuario); hay que crear esta función
-    $errores = array_merge($errores, $erroresFoto);
-    if (count($errores == 0)) {
-        saveuser($usuario);
-        header('Location: sesion.php');
-        exit;
-    } 
+  $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
+  if(count($errores) == 0) {
+    $usuario = $usersDb->userArray($_POST); // CREO UN USUARIO CON LA FUNCIÓN 'userArray($datos)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
+    $usersDb->saveUser($usuario); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
+    redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
   }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<?php include 'head.php'?>
+    <title>Formulario de registro</title>
+</head>
+<body>
 
 <?php include_once('navbar.php'); ?>
 <div class="container-fluid">
@@ -41,7 +31,7 @@ if ($_POST){
   </div>
   <form method='post' action=''>
     <div class="form-group">
-      <input type="text" class="form-control"  placeholder="Nombre y Apellido" name='nombre' value='<?=!isset($errores['nombre']) ? old('nombre') : "" ?>'>
+      <input type="text" class="form-control"  placeholder="Nombre" name='nombre' value='<?=!isset($errores['nombre']) ? old('nombre') : "" ?>'>
       <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['nombre'])): echo $errores['nombre']; endif; ?> </small>
     </div>
 
@@ -52,7 +42,8 @@ if ($_POST){
 
 	  <div class="form-group">
     	<div class="controls">
-    		<select class='form-control' name="sexo" placeholder="Ingrese email">
+    		<select class='form-control' name="sexo" >
+        <option disabled selected>Seleccione una opción</option>
           <option value='masculino'> Masculino </option>
           <option value='femenino'> Femenino </option>
           <option value='otro'> Otro </option>
