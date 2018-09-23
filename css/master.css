@@ -41,7 +41,8 @@ body {
 
     .nav a {
         padding: 30px 15px 30px 15px;
-        color: rgb(92, 92, 92)
+        color: rgb(255, 255, 255);
+        font-size: 14px;
     }
 
     .icono-carrito {
@@ -52,9 +53,10 @@ body {
     .menu {
         position: relative;
         display: flex;
-        background-color: white;
+        background-color: #277aaf;
         padding-left: 65px;
         align-items: center;
+        border-bottom: solid 1px white;
     }
     
 /* FIN MENU--- */
