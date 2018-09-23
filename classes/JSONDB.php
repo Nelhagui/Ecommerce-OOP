@@ -53,10 +53,12 @@ class JSONDB extends DB
     public function userArray($data)
     {
         $usuario = [
-            'username' => $data['username'],
+            'nombre' => $data['nombre'],
+            'usuario' => $data['usuario'],
+            'sexo' => $data['sexo'],
             'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
-            'role' => 1
+        
         ];
 
         $usuario['id'] = $this->idGenerate();
