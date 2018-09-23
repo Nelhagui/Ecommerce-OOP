@@ -50,7 +50,8 @@ if ($_POST){
 
 	  <div class="form-group">
     	<div class="controls">
-    		<select class='form-control' name="sexo" placeholder="Ingrese email">
+    		<select class='form-control' name="sexo" >
+        <option disabled selected>Seleccione una opción</option>
           <option value='masculino'> Masculino </option>
           <option value='femenino'> Femenino </option>
           <option value='otro'> Otro </option>
