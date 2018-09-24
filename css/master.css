@@ -5,6 +5,7 @@
         max-width: 300px;
         margin: auto;
         margin-top: 40px;
+        margin-bottom: 60px;
         text-align: center;
     }
 
@@ -40,7 +41,8 @@ body {
 
     .nav a {
         padding: 30px 15px 30px 15px;
-        color: rgb(92, 92, 92)
+        color: rgb(255, 255, 255);
+        font-size: 14px;
     }
 
     .icono-carrito {
@@ -51,9 +53,10 @@ body {
     .menu {
         position: relative;
         display: flex;
-        background-color: white;
+        background-color: #277aaf;
         padding-left: 65px;
         align-items: center;
+        border-bottom: solid 1px white;
     }
     
 /* FIN MENU--- */
@@ -116,6 +119,40 @@ body {
 
 /* FIN REGISTRO */
 
+/* FOOTER */
+.main-footer {
+    margin-top: 25px;
+}
+.main-footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 40px 0 40px 0;
+    background-color: #277aaf;
+    text-align: center;
+}
+
+.main-footer li {
+    display: inline;
+    border-right: 1px solid white;
+    
+}
+
+.main-footer li a {
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+}
+
+.main-footer li:last-child {
+    border-right: none;
+}
+
+.main-footer li a:hover {
+    color: rgb(169, 189, 252);
+}
+
+
+
 /* MEDIAQUERIES */
 
 @media (max-width: 627px) {
@@ -128,7 +165,7 @@ body {
         display: block;
         width: 100%;
         margin-left: 0%;
-        background-color: #f7f7f7%, 50%);
+        background-color: rgb(247, 247, 247);
     }
 
     .logo {
@@ -153,6 +190,7 @@ body {
 
     .nav a {
         padding: 18px 15px 18px 15px;
+        background-color: #277aaf;
     
 
 }
