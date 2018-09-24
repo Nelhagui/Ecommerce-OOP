@@ -11,7 +11,6 @@ if($auth->check()) {  // ACÁ ESTÁ VERIFIFANDO SI EXISTE UNA SESIÓN, LO VERIFI
 // HAGO QUE SI PASA LA VALIDACION VA A PERFIL.PHP
 if($_POST) {
     $errores = $validator->loginValidate($_POST);
-    var_dump($errores);
     $email = $_POST['email'];
     $password = $_POST['password'];
     if(count($errores) == 0){
