@@ -18,7 +18,7 @@
 
             <li class="nav-item"><a class="nav-link" href="logout.php">CERRAR SESIÓN</a></li>
 
-            <li class="nav-item"><a class="nav-link" href="backend.php">ADMINISTRAR</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">ADMINISTRAR</a></li>
 
         <?php endif; ?>
 
