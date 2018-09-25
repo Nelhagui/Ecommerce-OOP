@@ -17,3 +17,5 @@ $auth = new Auth();
 
 // CREANDO UNA INSTANCIA PARA RECORDAR USUARIO
 $recordar = new Recordar();
+
+$productDb = new JSONDB("product.json");

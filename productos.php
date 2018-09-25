@@ -5,13 +5,9 @@ include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
 include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()                   
 
 if ($_POST){
-  $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
-  if(count($errores) == 0) {
-    $usuario = $usersDb->userArray($_POST); // CREO UN USUARIO CON LA FUNCIÓN 'userArray($datos)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
-    $usersDb->saveUser($usuario); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
-    redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
+    $producto = $productDb->userArrayProducto($_POST); // CREO UN USUARIO CON LA FUNCIÓN 'userArray($datos)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
+    $usersDb->saveProduct($producto); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
   }
-}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +22,7 @@ if ($_POST){
 
   <div class="row">
     <div class="col-12 col-md-12 col-lg-12">
-      <h2>Ingrese sus datos para registrarse</h2>
+      <h2>Subir el Producto</h2>
     </div>
   </div>
   <form method='post' action=''>
@@ -39,11 +35,7 @@ if ($_POST){
     </div>
 
     <div class="form-group">
-      <input type="email" class="form-control" aria-describedby="emailHelp" name='precio' placeholder="Precio">
-    </div>
-
-    <div class="form-group">
-      <input type="password" class="form-control" placeholder="Password" name='password' value=''>
+      <input type="text" class="form-control" aria-describedby="emailHelp" name='precio' placeholder="Precio">
     </div>
 
       <div class="row">

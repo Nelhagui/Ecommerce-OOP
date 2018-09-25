@@ -44,6 +44,11 @@ class JSONDB extends DB
         return null;
     }
 
+    public function saveProduct($user){
+        $jsonUser = json_encode($user);
+        file_put_contents('product.json', $jsonUser . PHP_EOL, FILE_APPEND); 
+    }
+
     public function saveUser($user)
     {
         $jsonUser = json_encode($user);
@@ -64,6 +69,18 @@ class JSONDB extends DB
         $usuario['id'] = $this->idGenerate();
 
         return $usuario;
+
+    }
+
+    public function userArrayProducto($data)
+    {
+        $productos = [
+            'nombre' => $data['nombre'],
+            'id' => $data['id'],
+            'precio' => $data['precio'],
+        ];
+
+        return $productos;
 
     }
 
