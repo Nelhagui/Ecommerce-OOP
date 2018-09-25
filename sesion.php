@@ -8,14 +8,17 @@ if($auth->check()) {  // ACÁ ESTÁ VERIFIFANDO SI EXISTE UNA SESIÓN, LO VERIFI
     redirect('perfil.php'); // SI EXISTE LO LLEVA DIRECTO A PERFIL.PHP
 }
 
+// HAGO QUE SI PASA LA VALIDACION VA A PERFIL.PHP
 if($_POST) {
-    $usuario = $usersDb->dbEmailSearch($_POST['email']); // ENVÍA EL EMAIL A LA FUNCIÓN 'dbEmailSearch($email) DE LA CLASE 'JSONDB.PHP' PARA VERIFICAR SI EXISTE UN USUARIO CON ESE MAIL EN LA BASE DE DATOS
-    if($usuario !== null) { 
-        if(password_verify($_POST['password'], $usuario['password']) == true) { // COMPRUEBA SI LA CONTRASEÑA COINCIDE USANDO LA FUNCIÓN 'password_verify' DE PHP
-            $email = $_POST['email'];
-            $auth->login($email); // UTILIZA EL EMAIL PARA INICIAR SESION Y COOKIE DESDE LA FUNCIÓN 'login($mail)' DE LA CLASE "AUTH.PHP"
-            redirect('perfil.php');
-        } 
+    $errores = $validator->loginValidate($_POST);
+    var_dump($errores);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    if(count($errores) == 0){
+        $recordar->recordarUsuario(); // ESTO ES PARA LA FUNCIONALIDAD DE 'RECORDAR USUARIO'
+        $email = $_POST['email'];
+        $auth->login($email);
+        redirect('perfil.php');
     }
     
 }
@@ -32,18 +35,23 @@ if($_POST) {
 <body>
     <?php include_once('navbar.php'); ?>
 
-    <div class="container-fluid">
+    <div class="container-fluid"> 
         <div class="row">
             <form class="form-signin" action="" method="post">
                 <h2>Ingrese sus datos</h2>
                 <div class="form-group">
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' placeholder="Ingrese su Email">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' placeholder="Ingrese su Email"
+                value='<?php $recordar->recordarEmail();?>'>
+                <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
                 </div>
                 <div class="form-group">
-                <input type="password" class="form-control" id="exampleInputPassword1" name='password' placeholder="Ingrese su Contraseña">
+                <input type="password" class="form-control" id="exampleInputPassword1" name='password' placeholder="Ingrese su Contraseña"
+                value='<?php $recordar->recordarPass(); ?>'>
+                <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['password'])): echo $errores['password']; endif; ?> </small>
                 </div>
                 <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name='recordarme'
+                <?php if(isset($_COOKIE['email'])): echo 'checked'; endif; ?>>  
                 <label class="form-check-label" for="exampleCheck1">Recordarme</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
