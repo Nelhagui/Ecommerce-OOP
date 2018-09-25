@@ -22,8 +22,6 @@
 
         <?php endif; ?>
 
-
-
     </ul>
     <div class="icono-carrito">
       <a href="#"><img src="images/carrito-icono.png" alt="Mis Compras"></a>
