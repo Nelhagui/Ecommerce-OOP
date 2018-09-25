@@ -13,7 +13,7 @@ if ($_POST){
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'head.php'?>
-    <title>Formulario de registro</title>
+    <title>Subir producto</title>
 </head>
 <body>
 
@@ -25,7 +25,7 @@ if ($_POST){
       <h2>Subir el Producto</h2>
     </div>
   </div>
-  <form method='post' action=''>
+  <form method='post' action='' class='subir-producto'>
     <div class="form-group">
       <input type="text" class="form-control"  placeholder="ID" name='id'>
     </div>
@@ -50,7 +50,6 @@ if ($_POST){
       
   </form>
 </div>
-  
 
 </body>
 </html>
