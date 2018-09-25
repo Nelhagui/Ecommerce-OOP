@@ -1,9 +1,25 @@
 <footer class="main-footer">
-			<ul>
-				<li><a href="index.php">Home</a></li>
-				<li><a href="sesion.php">Iniciar Sesión</a></li>
-				<li><a href="preguntasfrecuentes.php">Faq</a></li>
-				<li><a href="registro.php">Registrarme</a></li>
-				<li><a href="#">Mis Compras</a></li>
-			</ul>
+    <ul>
+        <li> 
+          <a href="index.php">Home</a>
+        </li>
+        <li>
+          <a href="preguntasfrecuentes.php">Faq</a>
+        </li>
+        <?php if(!$auth->check()): ?>
+            <li>
+              <a href="sesion.php">Iniciar sesión</a>
+            </li>
+            <li>
+              <a href="registro.php">Registrarme</a>
+            </li>
+        <?php else: ?>
+
+            <li><a href="logout.php">Cerrar sesión</a></li>
+
+            <li><a href="productos.php">Subir producto</a></li>
+
+        <?php endif; ?>
+
+    </ul>
 </footer>
