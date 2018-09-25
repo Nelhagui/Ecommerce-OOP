@@ -120,6 +120,12 @@ body {
 
 /* FIN REGISTRO */
 
+/* SUBIR PRODUCTOS */
+
+form.subir-producto {
+    margin-bottom: 100px;
+}
+
 /* FOOTER */
 .main-footer {
     margin-top: 25px;
