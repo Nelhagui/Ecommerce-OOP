@@ -42,25 +42,8 @@ class Validator
 
     }
 
-    public function loginValidate($data) // AGREGO UN VALIDADOR DE LOGIN
+    public function loginValidate()
     {
-        $usersDb = new JSONDB("users.json");
-        $errores = [];
-        $usuario = $usersDb->dbEmailSearch($_POST['email']);
-        $email = trim($data['email']);
-
-        if($email == ''){
-            $errores['email'] = 'Debes ingresar un Email';
-        } else if($usuario == null){
-            $errores['email'] = 'El Email ingresado no es valido';
-        }
-        
-        if($data['password'] == ''){
-            $errores['password'] = 'Debes ingresar una password';
-        } else if(password_verify($_POST['password'], $usuario['password']) !== true){
-            $errores['password'] = 'La password es incorrecta';
-        }
-
-        return $errores;
+        //...
     }
 }
