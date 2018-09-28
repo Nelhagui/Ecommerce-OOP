@@ -17,12 +17,12 @@
 
     .btn-primary {
         color: #ffffff;
-        background-color: #277aaf;
+        background-color: #c26325;
         margin-bottom: 45px;
     }
     .btn-primary:hover {
         color: rgb(255, 255, 255);
-        background-color: #5895bb;
+        background-color: #db8d59;
         border-color: #b4b4b4;
     }
 /* FIN BOTONES SESION */
@@ -177,24 +177,25 @@ form.subir-producto {
 /* FOOTER */
 .main-footer {
     margin-top: 25px;
+    border-right: 1px solid #c25926;
 }
 .main-footer ul {
     list-style-type: none;
     margin: 0;
     padding: 40px 0 40px 0;
-    background-color: #277aaf;
+    background-color: #ffffff;
     text-align: center;
 }
 
 .main-footer li {
     display: inline;
-    border-right: 1px solid white;
+    border-right: 1px solid #c25826;
     
 }
 
 .main-footer li a {
     text-decoration: none;
-    color: white;
+    color: #c25826;;
     margin: 10px;
 }
 
