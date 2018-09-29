@@ -11,7 +11,7 @@
         </li>
         <li class='nav-busqueda'>
           <form action="#" method='get'>
-            <input type="text" name='busqueda' class='input-text' placeholder='Buscar habilidad, servicio...'>
+            <input type="text" name='busqueda' class='input-text' placeholder='Buscar...'>
             <input type="submit" value='Buscar'>
           </form>
         </li>
