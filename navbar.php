@@ -31,6 +31,10 @@
         <?php endif; ?>
 
     </ul>
+    <div class="icono-admin">
+      <a href="perfil.php"><img src="images/admin-icono.png" alt="Administrar Base"></a>
+    </div>
+
     <div class="icono-carrito">
       <a href="#"><img src="images/carrito-icono.png" alt="Mis Compras"></a>
     </div>
