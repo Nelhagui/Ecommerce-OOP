@@ -24,8 +24,5 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
             <li><?=$usuario['username']; ?></li>
         <?php endforeach ?>
     </ul>
-
-<body>
-    <p>Hola</p>
 </body>
 </html>
