@@ -17,7 +17,7 @@
 
             <li><a href="logout.php">Cerrar sesión</a></li>
 
-            <li><a href="productos.php">Ofrecer un servicio</a></li>
+            <li><a href="upload-service.php">Ofrecer un servicio</a></li>
 
         <?php endif; ?>
 
