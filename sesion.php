@@ -4,6 +4,9 @@ include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
 
 include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()                   
 
+require 'DB/Connector.php';
+require 'DB/QueryBuilder.php';
+
 if($auth->check()) {  // ACÁ ESTÁ VERIFIFANDO SI EXISTE UNA SESIÓN, LO VERIFICA EN LA FUNCIÓN 'check()' DE LA CLASE "AUTH.PHP"
     redirect('perfil.php'); // SI EXISTE LO LLEVA DIRECTO A PERFIL.PHP
 }
