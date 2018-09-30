@@ -6,15 +6,9 @@ class Validator
     {
         $errors = [];
 
-        $nombre = trim($data['nombre']);
-        if($nombre == "") {
-            $errors['nombre'] = "Debes ingresar un nombre";
-        }
-
-
-        $usuario = trim($data['usuario']);
-        if($usuario == "") {
-            $errors['usuario'] = "Debes ingresar un usuario";
+        $username = trim($data['username']);
+        if($username == "") {
+            $errors['username'] = "Debes ingresar un username";
         }
 
         $email = trim($data['email']);
@@ -46,19 +40,19 @@ class Validator
     {
         $usersDb = new JSONDB("users.json");
         $errores = [];
-        $usuario = $usersDb->dbEmailSearch($_POST['email']);
+        $username = $usersDb->dbEmailSearch($_POST['email']);
         $email = trim($data['email']);
 
         if($email == ''){
             $errores['email'] = 'Debes ingresar un Email';
-        } else if($usuario == null){
+        } else if($username == null){
             $errores['email'] = 'El Email ingresado no es valido';
         }
         
         if($data['password'] == ''){
             $errores['password'] = 'Debes ingresar una password';
-        } else if(password_verify($_POST['password'], $usuario['password']) !== true){
-            $errores['password'] = 'La password es incorrecta';
+        } else if(password_verify($_POST['password'], $username['password']) !== true){
+            $errores['password'] = 'password o email erróneo';
         }
 
         return $errores;
