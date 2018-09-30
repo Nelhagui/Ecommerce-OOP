@@ -9,6 +9,8 @@ class Validator
         $username = trim($data['username']);
         if($username == "") {
             $errors['username'] = "Debes ingresar un username";
+        } elseif($username > 9) {
+            $errors['username'] = "El usuario debe tener como máximo  10 caracteres";
         }
 
         $email = trim($data['email']);
