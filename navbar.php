@@ -27,17 +27,29 @@
             <li class="nav-item"><a class="nav-link" href="logout.php">CERRAR SESIÓN</a></li>
 
             <li class="nav-item"><a class="nav-link" href="productos.php">SUBIR PRODUCTO</a></li>
-
+            
         <?php endif; ?>
 
     </ul>
-    <div class="icono-admin">
-      <a href="perfil.php"><img src="images/admin-icono.png" alt="Administrar Base"></a>
-    </div>
 
-    <div class="icono-carrito">
-      <a href="#"><img src="images/carrito-icono.png" alt="Mis Compras"></a>
-    </div>
+    
+
+    <?php if(!$auth->check()): ?>
+        <div class="icono-carrito">
+          <a href="#"><img src="images/carrito-icono.png" alt="Mis Compras"></a>
+        </div>
+    <?php else: ?>
+        <div class="icono-carrito">
+          <a href="#"><img src="images/carrito-icono.png" alt="Mis Compras"></a>
+        </div>
+        <div class="icono-admin">
+            <a href="perfil.php"><img src="images/admin-icono.png" alt="Administrar Base"></a>
+        </div>
+    <?php endif; ?>
+
+
+
+
   </div>
 
 
