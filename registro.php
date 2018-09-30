@@ -2,16 +2,29 @@
 include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
                       // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
 
-include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()                   
+include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()     
+
+require 'DB/Connector.php';
+require 'DB/QueryBuilder.php';
+
 
 if ($_POST){
   $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
   if(count($errores) == 0) {
-    $usuario = $usersDb->userArray($_POST); // CREO UN USUARIO CON LA FUNCIÓN 'userArray($datos)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
-    $usersDb->saveUser($usuario); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
+    
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $genre = $_POST['sexo'];
+    
+    $pdo = Connector::make();
+    $queryBuilder = new QueryBuilder($pdo);
+    $queryBuilder->createUser($username, $email, $pass, $genre); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
     redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
   }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +43,9 @@ if ($_POST){
     </div>
   </div>
   <form method='post' action=''>
+<?php ?>
+
+
     <div class="form-group">
       <input type="text" class="form-control"  placeholder="Nombre de usuario" name='username' value='<?=!isset($errores['username']) ? old('username') : "" ?>'>
       <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['username'])): echo $errores['username']; endif; ?> </small>
@@ -42,7 +58,7 @@ if ($_POST){
 
 	  <div class="form-group">
     	<div class="controls">
-    		<select class='form-control' name="sexo" >
+    		<select class='form-control' name='sexo' >
         <option disabled selected>Seleccione una opción</option>
           <option value='masculino'> Masculino </option>
           <option value='femenino'> Femenino </option>
