@@ -31,13 +31,13 @@ if ($_POST){
   </div>
   <form method='post' action=''>
     <div class="form-group">
-      <input type="text" class="form-control"  placeholder="Nombre" name='nombre' value='<?=!isset($errores['nombre']) ? old('nombre') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['nombre'])): echo $errores['nombre']; endif; ?> </small>
+      <input type="text" class="form-control"  placeholder="Nombre de usuario" name='username' value='<?=!isset($errores['username']) ? old('username') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['username'])): echo $errores['username']; endif; ?> </small>
     </div>
 
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Nombre de usuario" name='usuario' value='<?=!isset($errores['usuario']) ? old('usuario') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['usuario'])): echo $errores['usuario']; endif; ?> </small>
+      <input type="email" class="form-control" aria-describedby="emailHelp" name='email' placeholder="Ingrese email" value='<?=!isset($errores['email']) ? old('email') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
     </div>
 
 	  <div class="form-group">
@@ -51,10 +51,6 @@ if ($_POST){
       </div>
     </div>
 
-    <div class="form-group">
-      <input type="email" class="form-control" aria-describedby="emailHelp" name='email' placeholder="Ingrese email" value='<?=!isset($errores['email']) ? old('email') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
-    </div>
 
     <div class="form-group">
       <input type="password" class="form-control" placeholder="Password" name='password' value=''>

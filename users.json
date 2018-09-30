@@ -3,3 +3,5 @@
 {"nombre":"Mario","usuario":"mario","sexo":"masculino","email":"mario@gmail.com","password":"$2y$10$Ld6d3w4euX9eNz7pr6j0\/.4U5w3\/IbrIlbhHyx8TqVjMFDpjxz\/1W","id":3}
 {"nombre":"Juan","usuario":"juan","sexo":null,"email":"juan@gmail.com","password":"$2y$10$8hgx0WtVy1R5BMAK1fNatumIXGlDJWOvY.hUXhKoz4pwjWa6vyNqe","id":4}
 {"nombre":"lucas","usuario":"lucasss","sexo":"masculino","email":"lucas@gmail.com","password":"$2y$10$RILFwrhj.fPIfGudGJ383.TTnzSU1XdKe1hQUgzjbmiJYkibQa6ou","id":5}
+{"nombre":null,"usuario":null,"sexo":"masculino","email":"carlos@gmail.com","password":"$2y$10$l2xi7wZp6IhOFzlv6cSGYOtNZzcZYU\/3sSYt6WQbm\/.QCJCbb\/75G","id":6}
+{"nombre":null,"usuario":null,"sexo":null,"email":"maria@gmail.com","password":"$2y$10$W88YWwOYsw9uHr.ksg6Hj.vLuo7QeaXvFTq3oOOxMo8d7q16AqX3a","id":7}
