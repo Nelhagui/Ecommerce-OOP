@@ -51,6 +51,11 @@ body {
         right: 65px;
     }
 
+    .icono-admin {
+        position: absolute;
+        right: 120px;
+    }
+
     .nav-sesion {
         position: absolute;
         right: 110px;
