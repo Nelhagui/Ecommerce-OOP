@@ -29,7 +29,7 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
             <p class="lead text-muted">Tu perfil es el de "Administrador" y estás autorizado a subir y administrar productos.</p>
             <p>
               <a href="productos.php" class="btn btn-primary my-2">SUBIR UN PRODUCTO</a>
-              <a href="#" class="btn btn-primary my-2">ADMINISTRAR PRODUCTOS</a>
+              <a href="#" class="btn btn-primary my-2">ADMINISTRAR USUARIOS</a>
             </p>
           </div>
         </section>
