@@ -26,10 +26,12 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
       <section class="jumbotron text-center">
           <div class="container">
             <h1 class="jumbotron-heading"><?="Bienvenido $username!" ?></h1>
-            <p class="lead text-muted">Tu perfil es el de "Administrador" y estás autorizado a subir y administrar productos.</p>
+            <p class="lead text-muted">Tu perfil es el de "Administrador" y estás autorizado a modificar los siguientes parámetros:</p>
             <p>
-              <a href="productos.php" class="btn btn-primary my-2">SUBIR UN PRODUCTO</a>
-              <a href="#" class="btn btn-primary my-2">ADMINISTRAR USUARIOS</a>
+              <a href="all-users.php" class="btn btn-primary my-2">USUARIOS</a>
+              <a href="all-services.php" class="btn btn-primary my-2">SERVICIOS ACTIVOS</a>
+              <a href="all-categories.php" class="btn btn-primary my-2">CATEGORÍAS</a>
+
             </p>
           </div>
         </section>
