@@ -36,9 +36,9 @@ class QueryBuilder
     }
 
 // funcion crea servicios en la base de datos
-    public function createService($idcategory, $iduser, $price, $name, $description, $urlimage, $urlvideo)
+    public function createService($idcategory, $iduser, $price, $name, $description)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO `services` (`id`, `id_category`, `id_user`, `price`, `name`, `description`, `imageservice`, `videoservice`) VALUES (NULL, '$idcategory', '$iduser', '$price', '$name', '$description', '$urlimage', '$urlvideo');");
+        $stmt = $this->pdo->prepare("INSERT INTO `services` (`id`, `id_category`, `id_user`, `price`, `name`, `description`, `imageservice`, `videoservice`) VALUES (NULL, '$idcategory', '$iduser', '$price', '$name', '$description', NULL, NULL);");
 
         $stmt->execute();
     }

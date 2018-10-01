@@ -14,13 +14,13 @@
     </div>
   </div>
   <form method='post' action='' class='subir-producto'>
-
+        <!-- SELECION DE CATEGORÍA -->
           <div class="form-group">
             <div class="controls">
-              <select class='form-control' name='sexo' >
+              <select class='form-control' name='category' >
                   <option disabled selected>Seleccione una Categoría</option>
                   <?php foreach($categorias as $categoria): ?>
-                    <option value='masculino'>
+                    <option value='<?=$categoria['id']; ?>' type='number'>
                       <div class="d-flex w-100 justify-content-between">
                           <p class="mb-1"><?=$categoria['name']; ?></p>
                       </div>
@@ -29,13 +29,13 @@
               </select>
             </div>
           </div>
-
+        <!-- SELECCION DE USUARIO -->
           <div class="form-group">
             <div class="controls">
-              <select class='form-control' name='sexo' >
-                  <option disabled selected>Seleccione una Usuario</option>
+              <select class='form-control' name='user' >
+                  <option disabled selected>Seleccione un Usuario</option>
                   <?php foreach($users as $user): ?>
-                    <option value='masculino'>
+                    <option value='<?=$user['id']; ?>'>
                       <div class="d-flex w-100 justify-content-between">
                           <p class="mb-1"><?=$user['username']; ?></p>
                       </div>
@@ -51,8 +51,14 @@
     </div>
 
     <div class="form-group">
-      <input type="text" class="form-control" aria-describedby="emailHelp" name='precio' placeholder="Precio">
+      <input type="text" class="form-control" aria-describedby="emailHelp" name='price' placeholder="Precio">
     </div>
+
+    <div class="form-group">
+        <textarea class="form-control" rows="5" id="comment" placeholder='Ingresar una descripción' name='description'></textarea>
+    </div>                
+
+
 
       <div class="row">
         <div class="col-12">
