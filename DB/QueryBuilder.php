@@ -28,12 +28,20 @@ class QueryBuilder
 
 
 // funcion crea categorías en la base de datos
-public function createCategory($name, $descripcion)
-{
-    $stmt = $this->pdo->prepare("INSERT INTO categories (`id`, `name`, `description`) VALUES (NULL, '$name', '$descripcion')");
+    public function createCategory($name, $descripcion)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO categories (`id`, `name`, `description`) VALUES (NULL, '$name', '$descripcion')");
 
-    $stmt->execute();
-}
+        $stmt->execute();
+    }
+
+// funcion crea servicios en la base de datos
+    public function createService($idcategory, $iduser, $price, $name, $description, $urlimage, $urlvideo)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO `services` (`id`, `id_category`, `id_user`, `price`, `name`, `description`, `imageservice`, `videoservice`) VALUES (NULL, '$idcategory', '$iduser', '$price', '$name', '$description', '$urlimage', '$urlvideo');");
+
+        $stmt->execute();
+    }
 
 
 
