@@ -12,6 +12,7 @@ class QueryBuilder
 // esta función sirve para consultar todo (*) de la base
     public function index ($table)  
     {
+        
         $stmt = $this->pdo->prepare("SELECT * FROM {$table}"); // pongo la consulta en la variable $stmt
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // PDO::FETCH_ASSOC le dice que devuelva el resultado en una matriz asociativa
@@ -38,8 +39,9 @@ class QueryBuilder
 // funcion crea servicios en la base de datos
     public function createService($idcategory, $iduser, $price, $name, $description)
     {
+        $pdo = Connector::make();
+        $queryBuilder = new QueryBuilder($pdo);
         $stmt = $this->pdo->prepare("INSERT INTO `services` (`id`, `id_category`, `id_user`, `price`, `name`, `description`, `imageservice`, `videoservice`) VALUES (NULL, '$idcategory', '$iduser', '$price', '$name', '$description', NULL, NULL);");
-
         $stmt->execute();
     }
 
