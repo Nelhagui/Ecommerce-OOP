@@ -18,8 +18,6 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
     <?php include_once('navbar.php'); ?>
     <?php include_once('nav-admin.php'); ?>
 
-
-
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
