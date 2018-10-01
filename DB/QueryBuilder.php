@@ -39,8 +39,7 @@ class QueryBuilder
 // funcion crea servicios en la base de datos
     public function createService($idcategory, $iduser, $price, $name, $description)
     {
-        $pdo = Connector::make();
-        $queryBuilder = new QueryBuilder($pdo);
+
         $stmt = $this->pdo->prepare("INSERT INTO `services` (`id`, `id_category`, `id_user`, `price`, `name`, `description`, `imageservice`, `videoservice`) VALUES (NULL, '$idcategory', '$iduser', '$price', '$name', '$description', NULL, NULL);");
         $stmt->execute();
     }

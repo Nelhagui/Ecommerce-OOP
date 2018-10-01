@@ -22,11 +22,12 @@
             <li class="nav-sesion">
               <a class="nav-link" href="sesion.php">Iniciar Sesión</a>
             </li>
+            <li class="nav-item"><a class="nav-link" href="upload-service.php">OFRECER UN SERVICIO</a></li>
         <?php else: ?>
 
             <li class="nav-item"><a class="nav-link" href="logout.php">CERRAR SESIÓN</a></li>
 
-            <li class="nav-item"><a class="nav-link" href="upload-service.php">OFRECER UN SERVICIO</a></li>
+            
             
         <?php endif; ?>
 

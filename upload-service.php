@@ -18,6 +18,9 @@ if ($_POST){
         $name = $_POST['name'];
         $description = $_POST['description'];
         $price = $_POST['price'];
+
+        $pdo = Connector::make();
+        $queryBuilder = new QueryBuilder($pdo);
         $queryBuilder->createService($idcategory, $iduser, $price, $name, $description);
     //   }
     }

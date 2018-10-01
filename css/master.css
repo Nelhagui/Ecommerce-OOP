@@ -183,6 +183,15 @@ body {
 
 form.subir-producto {
     margin-bottom: 100px;
+    margin-top: 40px;
+}
+
+
+
+/* SUBIR CATEGORIAS */
+
+.list-group {
+    margin-top: 40px;
 }
 
 /* FOOTER */

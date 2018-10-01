@@ -13,6 +13,7 @@
       <h2>SUBIR UN SERVICIO</h2>
     </div>
   </div>
+
   <form method='post' action='' class='subir-producto'>
         <!-- SELECION DE CATEGORÍA -->
           <div class="form-group">
@@ -45,7 +46,7 @@
             </div>
           </div>
 
-
+    <!-- SUBIR CATEGORÍA -->
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Nombre del servicio" name='name'>
     </div>
@@ -58,17 +59,16 @@
         <textarea class="form-control" rows="5" id="comment" placeholder='Ingresar una descripción' name='description'></textarea>
     </div>                
 
-
-
-      <div class="row">
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">ENVIAR PRODUCTO</button>
-        </div>
-      
-       </div>
-       
-        
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">ENVIAR SERVICIO</button>
       </div>
+    </div>
+    
+      
+    </div>
+
+
       
   </form>
 
