@@ -126,12 +126,18 @@ body {
 
 /* SECCION NAV CATEGORÍAS */
 
+.nav-categoria {
+    display: flex;
+    justify-content: center;
+}
+
 .nav-categoria a { 
     display: flex;
-    justify-content: space-around;   
-    padding: 30px 15px 30px 15px;
+    justify-content: space-around;
+    padding: 5px 5px 5px 5px;
     color: rgb(124, 124, 124);
     font-size: 14px;
+    margin: 10px;
 }
 
 /* SECCION PRODUCTOS--- */
