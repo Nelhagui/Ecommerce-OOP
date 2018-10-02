@@ -1,10 +1,7 @@
 <?php
 include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
                       // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
-
 include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()                   
-require 'DB/Connector.php';
-require 'DB/QueryBuilder.php';
 
 if ($_POST){
   var_dump($_POST);
@@ -19,7 +16,6 @@ if ($_POST){
         $description = $_POST['description'];
         $price = $_POST['price'];
 
-        $pdo = Connector::make();
         $queryBuilder = new QueryBuilder($pdo);
         $queryBuilder->createService($idcategory, $iduser, $price, $name, $description);
     //   }
