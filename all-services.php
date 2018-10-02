@@ -1,6 +1,10 @@
 <?php
 require 'DB/Connector.php';
 require 'DB/QueryBuilder.php';
+$pdo = Connector::make(); // agrego los datos de conección a la base de datos a la variable $pdo
+$queyBuilder = new QueryBuilder ($pdo); // creo una instancia del clase QueryBuilder 
+                                       //que tiene funciones de consultas para la base y por eso le paso
+                                        //la variable $pdo que tiene datos de acceso
 
 
 if ($_POST){
@@ -12,8 +16,6 @@ if ($_POST){
         $description = $_POST['description'];
         $price = $_POST['price'];
 
-        $pdo = Connector::make();
-        $queryBuilder = new QueryBuilder($pdo);
         $queryBuilder->createService($idcategory, $iduser, $price, $name, $description);
     //   }
     }
@@ -21,10 +23,6 @@ if ($_POST){
 
 
 
-$pdo = Connector::make(); // agrego los datos de conección a la base de datos a la variable $pdo
-$queyBuilder = new QueryBuilder ($pdo); // creo una instancia del clase QueryBuilder 
-                                       //que tiene funciones de consultas para la base y por eso le paso
-                                        //la variable $pdo que tiene datos de acceso
 $categorias = $queyBuilder->index('categories');
 $users = $queyBuilder->index('users');
                                     

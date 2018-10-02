@@ -19,10 +19,28 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
 </head>
 <body>
     <?php include_once('navbar.php'); ?>
-    <ul>
-        <?php foreach($usuarios as $usuario): ?>
-            <li><?=$usuario['username']; ?></li>
-        <?php endforeach ?>
-    </ul>
+    <?php include_once('nav-admin.php'); ?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="list-categories">
+                <div class="list-group">
+                    <?php foreach($usuarios as $usuario): ?>
+    
+                        <div class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1"><?=$usuario['username']; ?></h5>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 </body>
 </html>
