@@ -1,6 +1,7 @@
 <?php
-require 'DB/Connector.php';
-require 'DB/QueryBuilder.php';
+include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
+// QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
+include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()     
 
 $pdo = Connector::make(); // agrego los datos de conección a la base de datos a la variable $pdo
 $queyBuilder = new QueryBuilder ($pdo); // creo una instancia del clase QueryBuilder 
