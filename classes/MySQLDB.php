@@ -18,7 +18,7 @@ public function dbConnect(){}
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = $email");
         $stmt->execute();
-        $userArray = new User
+        
 
     }
 
