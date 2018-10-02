@@ -6,26 +6,26 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
 
 
 
-$pdo = Connector::make(); // agrego los datos de conección a la base de datos a la variable $pdo
-$queryBuilder = new QueryBuilder ($pdo);
+// $pdo = Connector::make(); // agrego los datos de conección a la base de datos a la variable $pdo
+// $queryBuilder = new QueryBuilder ($pdo);
 
 if($auth->check()) {  // ACÁ ESTÁ VERIFIFANDO SI EXISTE UNA SESIÓN, LO VERIFICA EN LA FUNCIÓN 'check()' DE LA CLASE "AUTH.PHP"
     redirect('perfil.php'); // SI EXISTE LO LLEVA DIRECTO A PERFIL.PHP
 }
 
 // HAGO QUE SI PASA LA VALIDACION VA A PERFIL.PHP
-if($_POST) {
-    $errores = $validator->loginValidate($_POST);
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if(count($errores) == 0){
-        $recordar->recordarUsuario(); // ESTO ES PARA LA FUNCIONALIDAD DE 'RECORDAR USUARIO'
-        $email = $_POST['email'];
-        $auth->login($email);
-        redirect('perfil.php');
-    }
+// if($_POST) {
+//     $errores = $validator->loginValidate($_POST);
+//     $email = $_POST['email'];
+//     $password = $_POST['password'];
+//     if(count($errores) == 0){
+//         $recordar->recordarUsuario(); // ESTO ES PARA LA FUNCIONALIDAD DE 'RECORDAR USUARIO'
+//         $email = $_POST['email'];
+//         $auth->login($email);
+//         redirect('perfil.php');
+//     }
     
-}
+// }
 
 ?>
 
