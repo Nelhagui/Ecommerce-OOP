@@ -4,8 +4,6 @@ include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
 
 include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()     
 
-require 'DB/Connector.php';
-require 'DB/QueryBuilder.php';
 
 
 if ($_POST){
