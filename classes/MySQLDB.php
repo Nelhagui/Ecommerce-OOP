@@ -1,83 +1,69 @@
 <?php
 
     require_once("DB.php");
-    //DBMySQL es hija de DB, require_once
     require_once("User.php");
-    //y tambien va a mandarse mensajes con la clase Usuario, asi que...
+    require_once("PDOConnector.php");
+    
 
     class MySQLDB extends DB
     {
-        //Creamos el atributo $conexion que solamente se va a usar dentro de esta clase.
-        protected $conexion;
+        protected $connection;
 
-        public function __construct()
-        //Nuestro constructor es basicamente PDO
-        {
-            $dsn = 'mysql:host=localhost;dbname=ecommerce;
-            charset=utf8mb4;port=3306';
-            $username ="root";
-            $password = "12345";
-
-            try {
-                $this->conexion = new PDO($dsn, $username, $password);
-                //A nuestro atributo $conexion le asignamos el new PDO, y de aca en mas solamente tenemos que escribir "conexion" y con "->" accedamos a los metodos que necesitemos y sean propios de PDO.
-            } 
-
-            catch(Exception $e)
-            {
-                echo "La conexion a la base de datos falló: " . $e->getMessage();
-            }
-            
+        public function __construct() {
+            $pdo = new PDOConnector();
+            $this->connection = $pdo->make();
         }
-        //Este metodo solamente va a tener la responsabilidad de guardar un nuevo usuario en nuestra base de datos.
+
          function saveUser(User $user)
-        //Mi metodo va a recibir como parametro un $usuario que si o si tiene que ser del tipo Usuario. Re-ver clase 1 de OOP-PHP (Type Hinting) si no se entiende por que.
-        {
+        {   
+            $username=$user->getUsername();
+            $email=$user->getEmail();
+            $password=$user->getPassword();
+            $genre=$user->getGenre();
+            $imageuser=$user->getImageuser();
+            $description=$user->getDescripcion();
             var_dump($user);
-            $query = $this->conexion->prepare("INSERT INTO users (id, username, email, password, genre, imageuser, descripcion) VALUES (NULL, :username, :email, :password, :genre, :imageuser, :description)");
-            //nuestra query a MySQL como vimos en PDO, pasando el primer parametro como default ya que cuando creamos la base, el ID es AUTOINCREMENTAL si hay que insertar uno nuevo.
-            $query->bindParam(":email", $user->getEmail(), PDO::PARAM_STR);
-            $query->bindParam(":password", $user->getPassword(), PDO::PARAM_STR);
-            $query->bindParam(":username", $user->getUsername(), PDO::PARAM_STR);
-            $query->bindParam(":genre", $user->getGenre(), PDO::PARAM_STR);
-            $query->bindParam(":imageuser", $user->getImageuser(), PDO::PARAM_STR);
-            $query->bindParam(":description", $user->getDescripcion(), PDO::PARAM_STR);
+            $query = $this->connection->prepare("INSERT INTO users VALUES(NULL, :username, :email, :password, :genre, :imageuser, :description)");
 
-            var_dump($query); exit;
-            //bindeo de valores. En clase lo corregimos a bindParam. Con bindValue podemos pasar tanto valores como variables. Con bindParam solamente podemos pasar variables, y si bien estamos pasando eso con getEmail() y getPassword(), lo cambio aca para que se entienda la diferencia entre ambos y se vea como en este caso particular, hubiera funcionado igual.
+             $query->bindParam(':username', $username, PDO::PARAM_STR);
+             $query->bindParam(':email', $email, PDO::PARAM_STR);
+             $query->bindParam(':password', $password, PDO::PARAM_INT);
+             $query->bindParam(':genre', $genre, PDO::PARAM_STR);
+             $query->bindParam(':imageuser', $imageuser, PDO::PARAM_STR);
+             $query->bindParam(':description', $description, PDO::PARAM_STR);
+   
+            //  var_dump($query); exit;
+            
+         
             $query->execute();
-            //Ejecuto la query
 
-            $id = $this->conexion->lastInsertId();
-            //Genero el Id, con "->" le mando un "mensaje" a "conexion", que de nuevo, es lo que se genera en el constructor cuando en el TRY le digo "$this->conexion = new PDO($dsn, $username, $password);". El mensaje que mando en forma de funcion es "DAME EL ID QUE ACABAS DE SETEAR POR DEFAULT"
+            $id = $this->connection->lastInsertId();
             $user->setId($id);
-            //..... y como nuestra nueva instancia de usuario no sabia todavia su ID (porque recuerden, lo genera la base de datos automaticamente), setId($id)!
 
             return $user;
         }
 
         function dbEmailSearch($email)
         {
-            $query = $this->conexion->prepare("Select * from usuarios where email = :email");
+            $query = $this->connection->prepare("SELECT * FROM users WHERE email = :email");
             $query->bindValue(":email", $email);
             $query->execute();
 
-            $usuarioFormatoArray = $query->fetch(PDO::FETCH_ASSOC);
+            $userArray = $query->fetch(PDO::FETCH_ASSOC);
 
-            if ($usuarioFormatoArray) {
-            //SI hay $usuarioFormatoArray en linea 60
-                $usuario = new Usuario($usuarioFormatoArray["email"], $usuarioFormatoArray["password"], $usuarioFormatoArray["id"]);
-                //devolveme el OBJETO del tipo Usuario que busque en MySQL. Aca puede confundir "new", pero a MySQL no le importa que vos manejes objetos, solamente guarda datos en campos preestablecidos. Esta nueva instancia de Usuario es un usuario que ya tenemos registrado, pero para usarlo necesitamos manipular los datos de MySQL y transformarlos en un objeto.
+            if ($userArray) {
+                $user = new Usuario($userArray["email"], $userArray["password"], $userArray["id"]);
                 return $user;
             } else {
-                //y si no hay $usuarioFormatoArray, devolveme null.
                 return null;
             }
 	    }
         
+
+
         function traeTodaLaBase()
         {
-            $query = $this->conexion->prepare("SELECT * FROM usuarios");
+            $query = $this->connection->prepare("SELECT * FROM users");
             $query->execute();
             
             $usuariosFormatoArray = $query->fetchAll(PDO::FETCH_ASSOC);

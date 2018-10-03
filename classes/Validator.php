@@ -13,11 +13,11 @@
             }
 
             if ($datos["email"] == "") {
-                $errores["email"] = "Y el email?";
+                $errores["email"] = "Ingresar un email";
             }
 
             else if (filter_var($datos["email"], FILTER_VALIDATE_EMAIL) == false) {
-                $errores["mail"] = "El mail tiene que ser un mail";
+                $errores["mail"] = "Ingrese un email";
             } else if ($db->dbEmailSearch($datos["email"]) == null) {
                 //SI haciendo uso del metodo buscamePorMail tenemos como resultado null, es porque el mail no esta registrado.
                 $errores["mail"] = "No estas registrado en nuestra plataforma";
@@ -26,7 +26,7 @@
             $usuario = $db->dbEmailSearch($datos["email"]);
             //A partir de aca, tenemos una variable $usuario con un objeto del tipo Usuario, ya que si buscamePorMail() devuelve null o un objeto, la parte de null ya la pasamos, asi que solamente queda que se instancie el usuario. Esa instancia se genera en la clase DB, por eso no necesitamos hacer require de Usuario para que esto pase.
             if ($datos["password"] == "") {   
-                $errores["password"] = "No llenaste la contraseña";
+                $errores["password"] = "Ingrese su contraseña";
             } else if ($usuario != null) {
                 //Doble check de que $usuario no sea null, confirmamos que usuario existe y puso contraseña, pero engo que validar que la contraseño que ingreso sea valida
                 if (password_verify($datos["password"], $usuario->getPassword()) == false) {
@@ -56,7 +56,7 @@
             }
     
             if ($informacion["password"] == "") {
-                $errores["password"] = "Sin contraseña no va la cosa";
+                $errores["password"] = "Ingrese una contraseña";
             }
     
             // if ($informacion["cpassword"] == "") {

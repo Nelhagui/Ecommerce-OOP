@@ -8,6 +8,7 @@ require 'classes/Recordar.php';// ESTA CLASE ES PARA RECORDAR EL USUARIO
 
 // INSTANCIAS PARA LA LÓGICA DE SESION Y REGISTRO
 $db = new MySQLDB();
+
 $auth = new Auth();
 $validator = new Validator();
 $recordar = new Recordar();
