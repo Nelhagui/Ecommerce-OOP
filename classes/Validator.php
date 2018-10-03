@@ -1,62 +1,73 @@
 <?php
 
-class Validator
-{
-    public static function regValidate($data)
+    require_once("DB.php");
+
+    class Validator
     {
-        $errors = [];
 
-        $username = trim($data['username']);
-        if($username == "") {
-            $errors['username'] = "Debes ingresar un username";
-        } elseif($username > 9) {
-            $errors['username'] = "El usuario debe tener como máximo  10 caracteres";
+        function validarLogin($datos, DB $db) {
+            $errores = [];
+    
+            foreach ($datos as $clave => $valor) {
+                $datos[$clave] = trim($valor);
+            }
+
+            if ($datos["email"] == "") {
+                $errores["email"] = "Y el email?";
+            }
+
+            else if (filter_var($datos["email"], FILTER_VALIDATE_EMAIL) == false) {
+                $errores["mail"] = "El mail tiene que ser un mail";
+            } else if ($db->dbEmailSearch($datos["email"]) == null) {
+                //SI haciendo uso del metodo buscamePorMail tenemos como resultado null, es porque el mail no esta registrado.
+                $errores["mail"] = "No estas registrado en nuestra plataforma";
+            }
+
+            $usuario = $db->dbEmailSearch($datos["email"]);
+            //A partir de aca, tenemos una variable $usuario con un objeto del tipo Usuario, ya que si buscamePorMail() devuelve null o un objeto, la parte de null ya la pasamos, asi que solamente queda que se instancie el usuario. Esa instancia se genera en la clase DB, por eso no necesitamos hacer require de Usuario para que esto pase.
+            if ($datos["password"] == "") {   
+                $errores["password"] = "No llenaste la contraseña";
+            } else if ($usuario != null) {
+                //Doble check de que $usuario no sea null, confirmamos que usuario existe y puso contraseña, pero engo que validar que la contraseño que ingreso sea valida
+                if (password_verify($datos["password"], $usuario->getPassword()) == false) {
+                    $errores["password"] = "La contraseña no es valida";
+                }
+            }
+
+            return $errores;
         }
 
-        $email = trim($data['email']);
+        function validarInformacion($informacion, DB $db) {
+            $errores = [];
+    
+            foreach ($informacion as $clave => $valor) {
+                $informacion[$clave] = trim($valor);
+            }
 
-        if($email == "") {
-            $errors['email'] = "Debes ingresar un email";
-        } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = "Ingrese un email válido";
+            if ($informacion["email"] == "") {
+                $errores["email"] = "Y el email??";
+            }
+            else if (filter_var($informacion["email"], FILTER_VALIDATE_EMAIL) == false) {
+                $errores["mail"] = "El email no es valido";
+
+            } else if ($db->dbEmailSearch($informacion["email"]) != NULL) {
+                //SI el metodo de DB dbEmailSearch() da como resultado que NO es null, es porque el metodo pudo instanciar al usuario, entonces ya existe en nuestra base de datos.
+                $errores["mail"] = "Ya hay un chabon con ese email";
+            }
+    
+            if ($informacion["password"] == "") {
+                $errores["password"] = "Sin contraseña no va la cosa";
+            }
+    
+            // if ($informacion["cpassword"] == "") {
+            //     $errores["cpassword"] = "La contraseña va dos veces";
+            // }
+    
+            // if ($informacion["password"] != "" && $informacion["cpassword"] != "" && $informacion["password"] != $informacion["cpassword"]) {
+            //     $errores["password"] = "Las contraseñas no coinciden";
+            // }
+    
+            return $errores;
         }
-
-        $password = trim($data['password']);
-        
-        if($password == "") {
-            $errors['password'] = "Debes ingresar una contraseña";
-        } elseif($password < 4) {
-            $errors['password'] = "La contraseña debe ser de al menos 4 caracteres";
-        }
-
-
-        if(!isset($data['confirm'])) {
-            $errors['confirm'] = "Debes aceptar terminos y condiciones";
-        }
-
-        return $errors;
 
     }
-
-    public function loginValidate($data) // AGREGO UN VALIDADOR DE LOGIN
-    {
-        $usersDb = new JSONDB("users.json");
-        $errores = [];
-        $username = $usersDb->dbEmailSearch($_POST['email']);
-        $email = trim($data['email']);
-
-        if($email == ''){
-            $errores['email'] = 'Debes ingresar un Email';
-        } else if($username == null){
-            $errores['email'] = 'El Email ingresado no es valido';
-        }
-        
-        if($data['password'] == ''){
-            $errores['password'] = 'Debes ingresar una password';
-        } else if(password_verify($_POST['password'], $username['password']) !== true){
-            $errores['password'] = 'password o email erróneo';
-        }
-
-        return $errores;
-    }
-}

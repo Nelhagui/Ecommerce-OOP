@@ -1,25 +1,30 @@
 ﻿<?php 
-include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
-// QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
-include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()                   
+include 'loader.php'; 
+include 'helpers.php'; 
+               
 
-if($auth->check()) {  // ACÁ ESTÁ VERIFIFANDO SI EXISTE UNA SESIÓN, LO VERIFICA EN LA FUNCIÓN 'check()' DE LA CLASE "AUTH.PHP"
-    redirect('perfil.php'); // SI EXISTE LO LLEVA DIRECTO A PERFIL.PHP
+if($auth->check()) { 
+    header("Location:perfil.php");
+    exit;
 }
 
-// HAGO QUE SI PASA LA VALIDACION VA A PERFIL.PHP
-if($_POST) {
-    $errores = $validator->loginValidate($_POST);
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if(count($errores) == 0){
-        $recordar->recordarUsuario(); // ESTO ES PARA LA FUNCIONALIDAD DE 'RECORDAR USUARIO'
-        $email = $_POST['email'];
+$errores = [];
+if ($_POST) {
+    //SI hay $_POST
+    $errores = $validator->validarLogin($_POST, $db);
+    //llenamos el array de errores, esta vez con nuestra instancia de Validator, haciendo uso de sus metodos.
+    if (count($errores) == 0) {
+        $email = $_POST["email"];
+        // si no hay errores, LOGUEAR
         $auth->login($email);
-        redirect('perfil.php');
+        //nuestra instancia de Auth usa su metodo login() para loguear al usuario
+          header("Location:perfil.php");
+        exit;
     }
-    
 }
+
+
+
 
 ?>
 

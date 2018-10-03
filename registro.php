@@ -1,26 +1,74 @@
 <?php
-include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
-                      // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
+// include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
+//                       // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
 
 include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()     
 
 
 
-if ($_POST){
-  $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
-  if(count($errores) == 0) {
+// if ($_POST){
+//   $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
+//   if(count($errores) == 0) {
     
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $genre = $_POST['sexo'];
+//     $username = $_POST['username'];
+//     $email = $_POST['email'];
+//     $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+//     $genre = $_POST['sexo'];
     
-    $pdo = Connector::make();
-    $queryBuilder = new QueryBuilder($pdo);
-    $queryBuilder->createUser($username, $email, $pass, $genre); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
-    redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
+//     $pdo = Connector::make();
+//     $queryBuilder = new QueryBuilder($pdo);
+//     $queryBuilder->createUser($username, $email, $pass, $genre); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
+//     redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
+//   }
+// }
+
+
+
+include_once("loader.php");
+require_once("classes/User.php");
+
+//como solamente registro con email, creo variable vacia para llamarla en el Value del campo email del form
+$emailDefault = "";
+
+$errores = [];
+
+if ($_POST) {
+  //Lleno el array de errores como antes, pero usando la instancia del objeto Validator
+  $errores = $validator->validarInformacion($_POST, $db);
+
+
+  if (!isset($errores["email"])) {
+    //si no hay errores en el mail, lo guardo para el caso que la pass este mal, asi lo mantengo en el form y el usuario no tiene que ponerlo de nuevo
+    $emailDefault = $_POST["email"];
+  }
+
+  if (count($errores) == 0) {
+    //Si count() de $errores = 0, creo mi nueva instancia de usuario
+    $usuario = new User($_POST["username"], $_POST["email"], $_POST["password"], $_POST["sexo"]) ;
+    //Como en ESTE caso mi clase usuario tiene tambien la responsabilidad de guardar su imagen, la guardamos
+    // $usuario->guardarImagen($usuario->getEmail());
+    //Aca guardamos el user en nuestra base de datos
+    $usuario = $db->saveUser($usuario);
+    //Lo pasamos por auth para derivarlo al perfil
+    $auth->login($_POST["email"]);
+    header("Location: perfil.php");
+    exit;
+
   }
 }
+
+//Aca, si hay sesion iniciada, no tiene por que ver el registro, asi que se deriva al perfil directamente en caso de que quiera ingresar a registro.php
+if ($auth->check()) {
+  header("Location:perfil.php");
+  exit;
+}
+
+
+
+
+
+
+
 
 
 ?>
