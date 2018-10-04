@@ -9,7 +9,7 @@ $emailDefault = "";
 $errores = [];
 
 if ($_POST) {
-  $errores = $validator->validarInformacion($_POST, $db);
+  $errores = $validator->dataValidate($_POST, $db);
 
 
   if (!isset($errores["email"])) {

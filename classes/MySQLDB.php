@@ -10,7 +10,8 @@
     {
         protected $connection;
 
-        public function __construct() {
+        public function __construct() 
+        {
             $pdo = new PDOConnector();
             $this->connection = $pdo->make();
         }
@@ -94,17 +95,17 @@
         }
 
 
-        function guardarServicio(Service $servicio)
+        function guardarServicio(Service $categoria)
         {   
             
-            $id=$servicio->getId();
-            $id_category=$servicio->getIdCategory();
-            $id_user=$servicio->getIdUser();
-            $price=$servicio->getPrice();
-            $name=$servicio->getName();
-            $description=$servicio->getDescription();
-            $imageservice=$servicio->getImageService();
-            $videoservice=$servicio->getVideoService();
+            $id=$categoria->getId();
+            $id_category=$categoria->getIdCategory();
+            $id_user=$categoria->getIdUser();
+            $price=$categoria->getPrice();
+            $name=$categoria->getName();
+            $description=$categoria->getDescription();
+            $imageservice=$categoria->getImageService();
+            $videoservice=$categoria->getVideoService();
             var_dump($imageservice);
             $query = $this->connection->prepare("INSERT INTO services VALUES(NULL, :idcategory, :iduser, :price, :name, :description, :imageservice, :videoservice)");
 
@@ -125,7 +126,25 @@
         }
 
 
+        function guardarCategoria (Category $categoria)
+        {   
+            
+            $id=$categoria->getId();
+            $name=$categoria->getName();
+            $description=$categoria->getDescription();
+
+            $query = $this->connection->prepare("INSERT INTO categories VALUES(NULL, :name, :description)");
+
+            $query->bindParam(':name', $name, PDO::PARAM_STR);
+            $query->bindParam(':description', $description, PDO::PARAM_STR);
+
+            $query->execute();
+
+        }
+
+
 
 
 
     }
+
