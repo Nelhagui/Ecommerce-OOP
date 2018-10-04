@@ -1,10 +1,3 @@
-<?php
-
-if($auth->check()) {
-      $username  = $_SESSION['logged'];
-}
-
-?>
 
 
 
@@ -19,7 +12,7 @@ if($auth->check()) {
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-8">
+        <!-- <div class="col-sm-8">
             <div class="list-categories">
                 <div class="list-group">
                     <?php foreach($services as $service): ?>
@@ -33,7 +26,7 @@ if($auth->check()) {
                     <?php endforeach ?>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-sm-4">
 
 
@@ -49,9 +42,9 @@ if($auth->check()) {
               <select class='form-control' name='category' >
                   <option disabled selected>Seleccione una Categoría</option>
                   <?php foreach($categorias as $categoria): ?>
-                    <option value='<?=$categoria['id']; ?>' type='number'>
+                    <option value='<?=$categorias['id'] ?>' type='text'>
                       <div class="d-flex w-100 justify-content-between">
-                          <p class="mb-1"><?=$categoria['name']; ?></p>
+                          <p class="mb-1"><?=$categoria['name']?></p>
                       </div>
                     </option>
                   <?php endforeach ?>

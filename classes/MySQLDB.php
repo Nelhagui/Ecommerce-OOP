@@ -2,7 +2,8 @@
 
     require_once("DB.php");
     require_once("User.php");
-    require_once("PDOConnector.php");
+    require 'classes/PDOConnector.php';
+
     
 
     class MySQLDB extends DB
@@ -79,6 +80,18 @@
             //Aclaro de nuevo, el array que devuelve este metodo es un ARRAY DE OBJETOS.
         
         }
+
+
+        public function buscarDatos($datos)
+        {
+            $stmt = $this->connection->prepare("SELECT * FROM $datos");
+            $stmt->execute();
+    
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    
+
+
 
 
 

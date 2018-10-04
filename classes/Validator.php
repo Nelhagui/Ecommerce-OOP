@@ -37,33 +37,33 @@
             return $errores;
         }
 
-        function validarInformacion($informacion, DB $db) {
+        function dataValidate($data, DB $db) {
             $errores = [];
     
-            foreach ($informacion as $clave => $valor) {
-                $informacion[$clave] = trim($valor);
+            foreach ($data as $clave => $valor) {
+                $data[$clave] = trim($valor);
             }
 
-            if ($informacion["email"] == "") {
+            if ($data["email"] == "") {
                 $errores["email"] = "Y el email??";
             }
-            else if (filter_var($informacion["email"], FILTER_VALIDATE_EMAIL) == false) {
+            else if (filter_var($data["email"], FILTER_VALIDATE_EMAIL) == false) {
                 $errores["mail"] = "El email no es valido";
 
-            } else if ($db->dbEmailSearch($informacion["email"]) != NULL) {
+            } else if ($db->dbEmailSearch($data["email"]) != NULL) {
                 //SI el metodo de DB dbEmailSearch() da como resultado que NO es null, es porque el metodo pudo instanciar al usuario, entonces ya existe en nuestra base de datos.
                 $errores["mail"] = "Ya hay un chabon con ese email";
             }
     
-            if ($informacion["password"] == "") {
+            if ($data["password"] == "") {
                 $errores["password"] = "Ingrese una contraseña";
             }
     
-            // if ($informacion["cpassword"] == "") {
+            // if ($data["cpassword"] == "") {
             //     $errores["cpassword"] = "La contraseña va dos veces";
             // }
     
-            // if ($informacion["password"] != "" && $informacion["cpassword"] != "" && $informacion["password"] != $informacion["cpassword"]) {
+            // if ($data["password"] != "" && $data["cpassword"] != "" && $data["password"] != $data["cpassword"]) {
             //     $errores["password"] = "Las contraseñas no coinciden";
             // }
     
