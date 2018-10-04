@@ -1,29 +1,5 @@
 <?php
-// include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
-//                       // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
-
-include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()     
-
-
-
-// if ($_POST){
-//   $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
-//   if(count($errores) == 0) {
-    
-//     $username = $_POST['username'];
-//     $email = $_POST['email'];
-//     $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-//     $genre = $_POST['sexo'];
-    
-//     $pdo = Connector::make();
-//     $queryBuilder = new QueryBuilder($pdo);
-//     $queryBuilder->createUser($username, $email, $pass, $genre); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($user)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
-//     redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
-//   }
-// }
-
-
-
+include 'helpers.php';    
 include_once("loader.php");
 require_once("classes/User.php");
 

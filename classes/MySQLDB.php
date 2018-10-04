@@ -89,13 +89,43 @@
     
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-    
-
-
-
-
 
         function dbConnect(){
-            
         }
+
+
+        function guardarServicio(Service $servicio)
+        {   
+            
+            $id=$servicio->getId();
+            $id_category=$servicio->getIdCategory();
+            $id_user=$servicio->getIdUser();
+            $price=$servicio->getPrice();
+            $name=$servicio->getName();
+            $description=$servicio->getDescription();
+            $imageservice=$servicio->getImageService();
+            $videoservice=$servicio->getVideoService();
+            var_dump($imageservice);
+            $query = $this->connection->prepare("INSERT INTO services VALUES(NULL, :idcategory, :iduser, :price, :name, :description, :imageservice, :videoservice)");
+
+             $query->bindParam(':idcategory', $id_category, PDO::PARAM_STR);
+             $query->bindParam(':iduser', $id_user, PDO::PARAM_STR);
+             $query->bindParam(':price', $price, PDO::PARAM_INT);
+             $query->bindParam(':name', $name, PDO::PARAM_STR);
+             $query->bindParam(':description', $description, PDO::PARAM_STR);
+             $query->bindParam(':imageservice', $imageservice, PDO::PARAM_STR);
+             $query->bindParam(':videoservice', $videoservice, PDO::PARAM_STR);
+       
+            $query->execute();
+
+            // $id = $this->connection->lastInsertId();
+            // $user->setId($id);
+
+            // return $user;
+        }
+
+
+
+
+
     }
