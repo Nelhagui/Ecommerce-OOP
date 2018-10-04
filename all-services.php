@@ -30,9 +30,8 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
                                     
 $categorias = $db->buscarDatos('categories'); // utilizo la función que busca en la tabla 'users' y lo cargo a una variable 
                                         // que voy a utilizar en all-users-view.php
-var_dump($categorias);
-echo $categorias['id'];
-foreach ($categorias as $categoria) {
-  echo $categorias ['name'];
-}                                  
+$usuarios = $db->buscarDatos('users');
+
+$servicios = $db->buscarDatos('services');
+
 require 'views/all-services-view.php';

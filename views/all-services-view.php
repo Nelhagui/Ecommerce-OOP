@@ -12,21 +12,21 @@
 
 <div class="container">
     <div class="row">
-        <!-- <div class="col-sm-8">
+        <div class="col-sm-8">
             <div class="list-categories">
                 <div class="list-group">
-                    <?php foreach($services as $service): ?>
+                    <?php foreach($servicios as $servicio): ?>
     
                         <div class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1"><?=$service['name']; ?></h5>
+                                <h5 class="mb-1"><?=$servicio['name']; ?></h5>
                             </div>
-                            <p class="mb-1"><?=$service['description']; ?></p>
+                            <p class="mb-1"><?=$servicio['description']; ?></p>
                         </div>
                     <?php endforeach ?>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="col-sm-4">
 
 
@@ -42,7 +42,7 @@
               <select class='form-control' name='category' >
                   <option disabled selected>Seleccione una Categoría</option>
                   <?php foreach($categorias as $categoria): ?>
-                    <option value='<?=$categorias['id'] ?>' type='text'>
+                    <option value='<?=$categoria['id'] ?>' type='text'>
                       <div class="d-flex w-100 justify-content-between">
                           <p class="mb-1"><?=$categoria['name']?></p>
                       </div>
@@ -56,10 +56,10 @@
             <div class="controls">
               <select class='form-control' name='user' >
                   <option disabled selected>Seleccione un Usuario</option>
-                  <?php foreach($users as $user): ?>
-                    <option value='<?=$user['id']; ?>'>
+                  <?php foreach($usuarios as $usuario): ?>
+                    <option value='<?=$usuario['id']; ?>'>
                       <div class="d-flex w-100 justify-content-between">
-                          <p class="mb-1"><?=$user['username']; ?></p>
+                          <p class="mb-1"><?=$usuario['username']; ?></p>
                       </div>
                     </option>
                   <?php endforeach ?>
