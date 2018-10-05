@@ -6,8 +6,8 @@
     {
 
         function validarLogin($datos, DB $db) {
+
             $errores = [];
-    
             foreach ($datos as $clave => $valor) {
                 $datos[$clave] = trim($valor);
             }
@@ -16,6 +16,7 @@
                 $errores["email"] = "Ingresar un email";
             }
 
+            // var_dump($errores);exit;
             else if (filter_var($datos["email"], FILTER_VALIDATE_EMAIL) == false) {
                 $errores["mail"] = "Ingrese un email";
             } else if ($db->dbEmailSearch($datos["email"]) == null) {
@@ -23,19 +24,15 @@
                 $errores["mail"] = "No estas registrado en nuestra plataforma";
             }
 
-            $usuario = $db->dbEmailSearch($datos["email"]);
-            //A partir de aca, tenemos una variable $usuario con un objeto del tipo Usuario, ya que si buscamePorMail() devuelve null o un objeto, la parte de null ya la pasamos, asi que solamente queda que se instancie el usuario. Esa instancia se genera en la clase DB, por eso no necesitamos hacer require de Usuario para que esto pase.
+            $user = $db->dbEmailSearch($datos["email"]);
             if ($datos["password"] == "") {   
                 $errores["password"] = "Ingrese su contraseña";
-            } else if ($usuario != null) {
-                //Doble check de que $usuario no sea null, confirmamos que usuario existe y puso contraseña, pero engo que validar que la contraseño que ingreso sea valida
-                if (password_verify($datos["password"], $usuario->getPassword()) == false) {
-                    $errores["password"] = "La contraseña no es valida";
-                }
+            } else if (password_verify($datos["password"], $user["password"]) == false) {
+                $errores["password"] = "La contraseña no es valida";
             }
-
             return $errores;
         }
+
 
         function dataValidate($data, DB $db) {
             $errores = [];

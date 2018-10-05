@@ -53,12 +53,14 @@
 
             $userArray = $query->fetch(PDO::FETCH_ASSOC);
 
-            if ($userArray) {
-                $user = new Usuario($userArray["email"], $userArray["password"], $userArray["id"]);
-                return $user;
-            } else {
-                return null;
-            }
+            // if ($userArray) {
+            //     $usuario = new User($userArray, ['username'], $userArray["email"], $userArray["password"], $userArray["genre"]);
+            //     return $usuario;
+            // } else {
+            //     return null;
+            // }
+
+            return $userArray;
 	    }
         
 

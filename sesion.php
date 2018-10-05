@@ -11,6 +11,7 @@ if($auth->check()) {
 $errores = [];
 if ($_POST) {
     //SI hay $_POST
+
     $errores = $validator->validarLogin($_POST, $db);
     //llenamos el array de errores, esta vez con nuestra instancia de Validator, haciendo uso de sus metodos.
     if (count($errores) == 0) {
