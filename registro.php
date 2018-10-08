@@ -2,16 +2,27 @@
 include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
                       // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
 
-include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()                   
+include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()     
+
+
 
 if ($_POST){
   $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
   if(count($errores) == 0) {
-    $usuario = $usersDb->userArray($_POST); // CREO UN USUARIO CON LA FUNCIÓN 'userArray($datos)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
-    $usersDb->saveUser($usuario); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
+    
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $genre = $_POST['sexo'];
+    
+    $pdo = Connector::make();
+    $queryBuilder = new QueryBuilder($pdo);
+    $queryBuilder->createUser($username, $email, $pass, $genre); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
     redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
   }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,19 +41,22 @@ if ($_POST){
     </div>
   </div>
   <form method='post' action=''>
+<?php ?>
+
+
     <div class="form-group">
-      <input type="text" class="form-control"  placeholder="Nombre" name='nombre' value='<?=!isset($errores['nombre']) ? old('nombre') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['nombre'])): echo $errores['nombre']; endif; ?> </small>
+      <input type="text" class="form-control"  placeholder="Nombre de usuario" name='username' value='<?=!isset($errores['username']) ? old('username') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['username'])): echo $errores['username']; endif; ?> </small>
     </div>
 
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Nombre de usuario" name='usuario' value='<?=!isset($errores['usuario']) ? old('usuario') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['usuario'])): echo $errores['usuario']; endif; ?> </small>
+      <input type="email" class="form-control" aria-describedby="emailHelp" name='email' placeholder="Ingrese email" value='<?=!isset($errores['email']) ? old('email') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
     </div>
 
 	  <div class="form-group">
     	<div class="controls">
-    		<select class='form-control' name="sexo" >
+    		<select class='form-control' name='sexo' >
         <option disabled selected>Seleccione una opción</option>
           <option value='masculino'> Masculino </option>
           <option value='femenino'> Femenino </option>
@@ -51,10 +65,6 @@ if ($_POST){
       </div>
     </div>
 
-    <div class="form-group">
-      <input type="email" class="form-control" aria-describedby="emailHelp" name='email' placeholder="Ingrese email" value='<?=!isset($errores['email']) ? old('email') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
-    </div>
 
     <div class="form-group">
       <input type="password" class="form-control" placeholder="Password" name='password' value=''>
@@ -91,6 +101,7 @@ if ($_POST){
   </form>
 </div>
   
+<?php include_once('footer.php'); ?>
 
 </body>
 </html>
