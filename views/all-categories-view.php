@@ -41,7 +41,7 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='name' placeholder="Ingresar nombre de Categoría">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="5" id="comment" placeholder='Ingresar una descripción' name='descripcion'></textarea>
+                        <textarea class="form-control" rows="5" id="comment" placeholder='Ingresar una descripción' name='description'></textarea>
                     </div>                
                     <button type="submit" class="btn btn-primary">Agregar Categoría</button>
                 </form>

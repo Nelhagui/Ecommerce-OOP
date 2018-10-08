@@ -12,7 +12,10 @@ class Auth
     public function login($email)
     {
         $_SESSION['logged'] = $email;
+        $_SESSION['id']= 25;
         setcookie('logged', $email, time() + 3600 * 2);
+        // var_dump($_SESSION['logged']);
+        // var_dump($_SESSION['id']);exit;
     }
 
     public function logout()

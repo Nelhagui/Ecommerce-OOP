@@ -1,26 +1,42 @@
 <?php
-include 'loader.php'; // ESTE ARCHIVO CONTIENE LOS INCLUEDES DE LAS CLASES
-                      // QUE ANTES ESTABAN COMO FUNCIONES EN FUNCIONES.PHP
+include 'helpers.php';    
+include_once("loader.php");
+require_once("classes/User.php");
 
-include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()     
+//como solamente registro con email, creo variable vacia para llamarla en el Value del campo email del form
+$emailDefault = "";
+
+$errores = [];
+
+if ($_POST) {
+  $errores = $validator->dataValidate($_POST, $db);
 
 
+  if (!isset($errores["email"])) {
+    $emailDefault = $_POST["email"];
+  }
 
-if ($_POST){
-  $errores = $validator->regValidate($_POST); // ACÁ VALIDO LOS ERRORES CON LA INSTANCIA '$validator' DE LA CLASE 'VALIDATOR.PHP' HECHA EN 'LOADER.PHP'
-  if(count($errores) == 0) {
-    
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $genre = $_POST['sexo'];
-    
-    $pdo = Connector::make();
-    $queryBuilder = new QueryBuilder($pdo);
-    $queryBuilder->createUser($username, $email, $pass, $genre); // GUARDO EL USUARIO CON LA FUNCIÓN 'saveUser($usuario)' QUE ESTÁ DENTRO DE LA INSTANCIA '$usersDb' DE LA CLASE 'JSONDB.PHP' HECHA EN 'LOADER.PHP'
-    redirect('sesion.php'); // SI PASA LA VALIDACIÓN Y GUARDA EL USUARIO LO ENVÍO A INICIAR SESIÓN. 
+  if (count($errores) == 0) {
+    $user = new User($_POST["username"], $_POST["email"], $_POST["password"], $_POST["genre"]) ;
+    $user = $db->saveUser($user);
+    $auth->login($_POST["email"]);
+    header("Location: perfil.php");
+    exit;
+
   }
 }
+
+if ($auth->check()) {
+  header("Location:perfil.php");
+  exit;
+}
+
+
+
+
+
+
+
 
 
 ?>
@@ -56,7 +72,7 @@ if ($_POST){
 
 	  <div class="form-group">
     	<div class="controls">
-    		<select class='form-control' name='sexo' >
+    		<select class='form-control' name='genre' >
         <option disabled selected>Seleccione una opción</option>
           <option value='masculino'> Masculino </option>
           <option value='femenino'> Femenino </option>
