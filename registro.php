@@ -1,35 +1,52 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="css/estilos.css"> -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/master.css">
-  <title>Formulario</title>
-</head>
-<body>
-
 <?php
-include 'funcionesdos.php';
+include 'helpers.php';    
+include_once("loader.php");
+require_once("classes/User.php");
 
-if ($_POST){
-  $errores = validate($_POST);
+//como solamente registro con email, creo variable vacia para llamarla en el Value del campo email del form
+$emailDefault = "";
 
-  if(count($errores) == 0){
-    $usuario = createuser($_POST);
-    // $erroresFoto = saveAvatar ($usuario); hay que crear esta función
-    $errores = array_merge($errores, $erroresFoto);
-    if (count($errores == 0)) {
-        saveuser($usuario);
-        header('Location: sesion.php');
-        exit;
-    } 
+$errores = [];
+
+if ($_POST) {
+  $errores = $validator->dataValidate($_POST, $db);
+
+
+  if (!isset($errores["email"])) {
+    $emailDefault = $_POST["email"];
+  }
+
+  if (count($errores) == 0) {
+    $user = new User($_POST["username"], $_POST["email"], $_POST["password"], $_POST["genre"]) ;
+    $user = $db->saveUser($user);
+    $auth->login($_POST["email"]);
+    header("Location: perfil.php");
+    exit;
+
   }
 }
+
+if ($auth->check()) {
+  header("Location:perfil.php");
+  exit;
+}
+
+
+
+
+
+
+
+
+
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<?php include 'head.php'?>
+    <title>Formulario de registro</title>
+</head>
+<body>
 
 <?php include_once('navbar.php'); ?>
 <div class="container-fluid">
@@ -40,19 +57,23 @@ if ($_POST){
     </div>
   </div>
   <form method='post' action=''>
+<?php ?>
+
+
     <div class="form-group">
-      <input type="text" class="form-control"  placeholder="Nombre y Apellido" name='nombre' value='<?=!isset($errores['nombre']) ? old('nombre') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['nombre'])): echo $errores['nombre']; endif; ?> </small>
+      <input type="text" class="form-control"  placeholder="Nombre de usuario" name='username' value='<?=!isset($errores['username']) ? old('username') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['username'])): echo $errores['username']; endif; ?> </small>
     </div>
 
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Nombre de usuario" name='usuario' value='<?=!isset($errores['usuario']) ? old('usuario') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['usuario'])): echo $errores['usuario']; endif; ?> </small>
+      <input type="email" class="form-control" aria-describedby="emailHelp" name='email' placeholder="Ingrese email" value='<?=!isset($errores['email']) ? old('email') : "" ?>'>
+      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
     </div>
 
 	  <div class="form-group">
     	<div class="controls">
-    		<select class='form-control' name="sexo" placeholder="Ingrese email">
+    		<select class='form-control' name='genre' >
+        <option disabled selected>Seleccione una opción</option>
           <option value='masculino'> Masculino </option>
           <option value='femenino'> Femenino </option>
           <option value='otro'> Otro </option>
@@ -60,10 +81,6 @@ if ($_POST){
       </div>
     </div>
 
-    <div class="form-group">
-      <input type="email" class="form-control" aria-describedby="emailHelp" name='email' placeholder="Ingrese email" value='<?=!isset($errores['email']) ? old('email') : "" ?>'>
-      <small id="passwordHelp" class="text-danger"> <?php if(isset($errores['email'])): echo $errores['email']; endif; ?> </small>
-    </div>
 
     <div class="form-group">
       <input type="password" class="form-control" placeholder="Password" name='password' value=''>
@@ -100,6 +117,7 @@ if ($_POST){
   </form>
 </div>
   
+<?php include_once('footer.php'); ?>
 
 </body>
 </html>
