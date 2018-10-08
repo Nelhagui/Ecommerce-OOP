@@ -16,6 +16,7 @@ include 'helpers.php'; // ACÁ HAY FUNCIONES COMO EL ODL()
 </head>
 <body>
     <?php include_once('navbar.php'); ?>
+    <?php include_once('nav-admin.php'); ?>
 
     <?php if(!$auth->check()):?>
             <div class="alert alert-danger" role="alert">
