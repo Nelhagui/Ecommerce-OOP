@@ -13,12 +13,12 @@ if ($_POST) {
     //SI hay $_POST
 
     $errores = $validator->validarLogin($_POST, $db);
-    //llenamos el array de errores, esta vez con nuestra instancia de Validator, haciendo uso de sus metodos.
     if (count($errores) == 0) {
         $email = $_POST["email"];
-        // si no hay errores, LOGUEAR
+        $arrayID=$db->dbEmailSearch($_POST["email"]);
+        var_dump($arrayID['id']);exit;
+        
         $auth->login($email);
-        //nuestra instancia de Auth usa su metodo login() para loguear al usuario
           header("Location:perfil.php");
         exit;
     }
