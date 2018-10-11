@@ -9,4 +9,4 @@ if ($_POST){
 
 
 $categorias = $db->buscarDatos('categories');
-require 'views/all-categories-view.php';
+require 'views/all-categories-admin-view.php';

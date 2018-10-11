@@ -4,7 +4,7 @@ include 'helpers.php';
                
 
 if($auth->check()) { 
-    header("Location:perfil.php");
+    header("Location:admin-home.php");
     exit;
 }
 
@@ -18,7 +18,7 @@ if ($_POST) {
         $arrayID=$db->dbEmailSearch($_POST["email"]);
         
         $auth->login($email);
-          header("Location:perfil.php");
+          header("Location:admin-home.php");
         exit;
     }
 }
