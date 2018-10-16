@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 30-09-2018 a las 05:22:34
--- Versión del servidor: 5.7.23-0ubuntu0.18.04.1
--- Versión de PHP: 7.2.10-0ubuntu0.18.04.1
+-- Tiempo de generación: 16-10-2018 a las 00:00:14
+-- Versión del servidor: 5.7.22-0ubuntu0.17.10.1
+-- Versión de PHP: 7.2.7-1+ubuntu17.10.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -40,7 +40,9 @@ INSERT INTO `categories` (`id`, `name`, `description`) VALUES
 (1, 'Gastronomía', 'Buscá y viví las mejores experiencias Gastronómicas que pueden darte nuestros Ofrecemers!'),
 (2, 'Tecnología', '¿Necesitás un consejo o solucionar un problema con ese aparato que no entendés? consultalo con nuestros Ofrecemers!'),
 (3, 'Deporte', 'el deporte es lindo'),
-(6, 'Eventos', 'Los eventos pueden ser representados por nuestros Ofrecemers');
+(6, 'Eventos', 'Los eventos pueden ser representados por nuestros Ofrecemers'),
+(10, 'Ciencia', 'Prepará tus trabajos de ciencia junto a expertos!!!!'),
+(11, 'Música', 'Los mejores músicos preparados para darte una mano.');
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `id_category`, `id_user`, `price`, `name`, `description`, `imageservice`, `videoservice`) VALUES
-(1, 1, 2, 300, 'Noche de Sushi', 'Sorprendé a tu familia, pareja o a vos mismo con los mejores sushis, te voy a preparar 20 piezas de roll para que lo disfrutes con quien quieras, animate!!', '', '');
+(1, 1, 2, 300, 'Noche de Sushi', 'Sorprendé a tu familia, pareja o a vos mismo con los mejores sushis, te voy a preparar 20 piezas de roll para que lo disfrutes con quien quieras, animate!!', '', ''),
+(2, 2, 10, 600, 'Reparamos tu PC', '¿Problemas con tu máquina? Nos ocupamos de solucionar tus problemas con esos aparatos que no comprendes.', '', '');
 
 -- --------------------------------------------------------
 
@@ -102,23 +105,20 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `pass` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `genre` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `imageuser` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `descripcion` varchar(200) COLLATE utf8_spanish2_ci NOT NULL
+  `imageuser` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `descripcion` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `pass`, `genre`, `imageuser`, `descripcion`) VALUES
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `genre`, `imageuser`, `descripcion`) VALUES
 (2, 'mario', 'mario@gmail.com', '12345', 'masculino', '', ''),
-(5, 'mario', 'nelsonaguiarsalazar@gmail.com', '23\r\n56', '', '', ''),
-(6, 'nelson', 'nelsonaguiarsalazar@gmail.com', '12345', 'masculino', '', ''),
-(7, 'liz', 'liz@gmail.com', '12345', 'femenino', '', ''),
-(8, 'nelson', 'nelson@gmail.com', '$2y$10$RHFHgyPzKIMteE0msA7w0eEXjJGA.GX4dBC/YcbbNjmW0d7C2NRKu', 'otro', '', ''),
-(9, 'coco', 'coco@gmail.com', '$2y$10$kryGb1sa20nhEpDXM0zHcOclsmJVJSF4tvuAC7QamrD1XJASd2KCu', 'masculino', '', '');
+(10, 'Nelson', 'nelson@gmail.com', '$2y$10$hQNv7JO/K2nNp/vX3jNf8eOVun3cG1tJxlnyWB8yercZaIWDwp02W', 'masculino', NULL, NULL),
+(13, 'María', 'maria@gmail.com', '$2y$10$r2t.jgcKaVSLJ.tDJOLe7eQ6PBGUaLlgRFiV85HyI5cAzJ3.9nYCa', 'femenino', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -167,7 +167,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `orders`
 --
@@ -182,12 +182,12 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- Restricciones para tablas volcadas
 --
